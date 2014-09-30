@@ -12,5 +12,5 @@ h1{height:100px;color:$color-text;}
 @import "sp/test/index";
 
 .mycool-icon{
-	@include test-sprite(deal-mark);
+	@include test-sprite(deal-title);
 }
