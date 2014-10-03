@@ -1,3 +1,3 @@
 <?php
-	include 'template/home/home.php'
+	include 'template/home/index.php'
 ?>

@@ -1,12 +1,13 @@
 <?php
 	$title="HOME";
-	$cssfile = array('base', 'base');
+	//$cssfile = array('base', 'base');
 	include_once ('template/common/head.php');
 ?>
 <head>
 </head>
 <body>
 	<?php
+		$headerlist = array('HOME', 'SPECIALTY', 'WORKS', 'BLOG');
 		include_once ('template/common/header.php');	
 	?>
 	<h1>Hello world!</h1>

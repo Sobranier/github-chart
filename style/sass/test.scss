@@ -1,0 +1,16 @@
+@import "modules/basic-color";
+h1{height:100px;color:$color-text;}
+@mixin border-radius($radius){
+	-webkit-border-radius:$radius;
+	-moz-border-radius:$radius;
+	-ms-border-radius:$radius;
+	border:$radius;
+}
+//所有可能重复的，可以复用的，就写成这样的形式
+.box{@include border-radius(10px);}
+
+@import "sp/test/index";
+
+.mycool-icon{
+	@include test-sprite(deal-title);
+}

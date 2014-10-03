@@ -1,16 +1,46 @@
-@import "modules/basic";
-h1{height:100px;color:$color-text;}
-@mixin border-radius($radius){
-	-webkit-border-radius:$radius;
-	-moz-border-radius:$radius;
-	-ms-border-radius:$radius;
-	border:$radius;
+@import "compass/reset";
+@import "modules/basic-color";
+@import "modules/basic-responsive";
+
+.cf {
+	&:after {
+		content:'';
+		display:block;
+		clear:both;
+		height:0;
+		overflow:hidden;
+		visibility:hidden;
+	}
 }
-//所有可能重复的，可以复用的，就写成这样的形式
-.box{@include border-radius(10px);}
 
-@import "sp/test/index";
+/*
+property参考顺序为：
+布局，包括position, display, float
+盒模型，包括width, height, padding, border, margin。(顺序待议)
+文本，包括font, color, line-height(存疑), word-spacing, letter-spacing等
+背景，包括background
+非标准属性，例如-moz-transition, -webkit-transform等
+*/
+/*
+css3一些新属性：
+border-radius
+box-shadow
+text-shadow
 
-.mycool-icon{
-	@include test-sprite(deal-title);
+Text-Stroke
+Multiple Backgrounds
+background-size
+Transition
+*/
+
+body {
+	color:$color-text;
+	font-family:Tahoma,Arial,”Helvetica Neue“,”Hiragino Sans GB”,Simsun,sans-self;
+	background-color:$bg-dark;
+}
+
+.wrapper-content {
+	width:80em;margin:0 auto;
+	background-color:white;
+
 }

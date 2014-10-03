@@ -3,6 +3,7 @@
 <head lang="en">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="keywords" content="yanweiqing,html,php,js">
+
 	<title><?php
 		if (isset($fullTitle)) {
 			echo $fullTitle;
@@ -12,9 +13,25 @@
 			echo 'Sobranie | 严伟庆';
 		}
 	?></title>
-	<?php
-		View::addCssFiles(array('base','base'));
+<?php
+//判断是否有css文件，一般情况下默认加载base
+	if ($title === "HOME") {
+		echo '<link rel="shortcut icon" href="./style/img/bitbug_favicon.ico" type="image/x-icon">';
+		echo '<link rel="stylesheet" href="./style/css/base.css">';
 		if (isset($cssfile)) {
-			View::addCssFiles($cssfile);
+			foreach ($cssfile as $value) {
+				echo '<link rel="stylesheet" href="./style/css/modules/basic-', $value, '.css">';
+			}
 		}
-	?>
+	} else {
+		echo '<link rel="shortcut icon" href="../../style/img/bitbug_favicon.ico" type="image/x-icon">';
+		echo '<link rel="stylesheet" href="../../style/css/base.css">';
+		if (isset($cssfile)) {
+			foreach ($cssfile as $value) {
+				echo '<link rel="stylesheet" href="../../style/css/modules/basic-', $value, '.css">';
+			}
+		}
+	}
+	
+		
+?>
