@@ -1,0 +1,44 @@
+@import "../modules/basic-Zindex";
+@import "../modules/basic-responsive";
+@import "../modules/basic-color";
+@import "../modules/basic-animation";
+
+.header {
+	position:fixed;
+	z-index:$Zindex-header;
+	width:100%;
+	.header-logo {
+		display:block;
+		width:100px;height:100px;
+		background-color:white;
+	}
+}
+
+.pg-home .header {
+	height:0;
+	.header-guide {
+		background-color:$color-January;
+		border:3px solid $color-July;
+		margin:5px 10px;
+		.header-guide-info {
+			width:$header-info-width;
+			padding:3px;
+			border:1px solid $color-July;
+			margin:3px;
+			font-family: "MHei",STHeitiTC-Light,"Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;
+			font-size:$header-info-width;
+			color:$color-July;
+			font-weight:bold;
+			cursor:pointer;
+		}
+		.header-guide-nav {
+			width:100px;
+			margin:10px $header-info-width 10px 10px;
+			a {
+				display:block;
+			}
+		}
+	}
+	
+}
+

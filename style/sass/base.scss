@@ -1,6 +1,7 @@
 @import "compass/reset";
 @import "modules/basic-color";
 @import "modules/basic-responsive";
+@import "modules/basic-Zindex";
 
 .cf {
 	&:after {
@@ -11,6 +12,13 @@
 		overflow:hidden;
 		visibility:hidden;
 	}
+}
+
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
 }
 
 /*

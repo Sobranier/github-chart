@@ -1,0 +1,22 @@
+
+//渐出动画
+@keyframes myshow
+{
+	from {display:none;}
+	to {display:block;}
+}
+@-moz-keyframes myshow /* Firefox */
+{
+	from {display:none;}
+	to {display:block;}
+}
+@-webkit-keyframes myshow /* Safari and Chrome */
+{
+	from {display:none;}
+	to {display:block;}
+}
+@-o-keyframes myshow /* Opera */
+{
+	from {display:none;}
+	to {display:block;}
+}

@@ -1,11 +1,11 @@
 <?php
 	$title="HOME";
-	//$cssfile = array('base', 'base');
+	$cssfile = array('header');
 	include_once ('template/common/head.php');
 ?>
 <head>
 </head>
-<body>
+<body class="pg-home">
 	<?php
 		$headerlist = array('HOME', 'SPECIALTY', 'WORKS', 'BLOG');
 		include_once ('template/common/header.php');	
@@ -16,6 +16,19 @@
 	?>
 	<script>
 		console.log("hello world");
+	</script>
+	<script src="js/Animations.js"></script>
+	<script>
+		YUI({
+			module:{
+				'AnimationShow':{
+					fullpath:'js/Animations.js',
+					requires:['node-base']
+				}
+			}
+		}).use('AnimationShow',function(Y){
+			Y.AnimationShow.sayHello(Y.one('#headerGuide'));
+		});
 	</script>
 </body>
 </html>
