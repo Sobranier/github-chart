@@ -13,3 +13,7 @@ I am learning php, so I decided to build my personal website by PHP
 -works
 --work\ui\Tcharts
 -blog
+
+10-4记
+导航栏的功能和样式基本实现，未来一天实现首页的高度自动设置的问题。
+同时了解一下具体怎样实现监听鼠标的位置变化
