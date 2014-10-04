@@ -1,5 +1,6 @@
 <?php
 	$title="SPECIALTY";
+	$cssfile = array('header');
 	include_once ('../common/head.php');
 ?>
 <head>

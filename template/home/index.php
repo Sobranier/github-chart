@@ -10,7 +10,10 @@
 		$headerlist = array('HOME', 'SPECIALTY', 'WORKS', 'BLOG');
 		include_once ('template/common/header.php');	
 	?>
-	<h1>Hello world!</h1>
+
+	<?php
+		include_once ('component/bigFace/bigFace.php');	
+	?>
 	<?php
 		include_once ('template/common/footer.php');
 	?>
@@ -19,15 +22,16 @@
 	</script>
 	<script src="js/Animations.js"></script>
 	<script>
-		YUI({
-			module:{
-				'AnimationShow':{
-					fullpath:'js/Animations.js',
-					requires:['node-base']
-				}
-			}
-		}).use('AnimationShow',function(Y){
-			Y.AnimationShow.sayHello(Y.one('#headerGuide'));
+		YUI().use('node','transition',function(Y){
+			var Sou = Y.one('#headerGuide'),
+				Tar = Y.one('#headerNav');
+			Tar.hide(true);
+			Sou.on('mouseout',function(){
+				Tar.hide(true);
+			});
+			Sou.on('mouseover',function(){
+				Tar.show(true);
+			});
 		});
 	</script>
 </body>

@@ -1,5 +1,6 @@
 <?php
 	$title="WORKS";
+	$cssfile = array('header');
 	include_once ('../common/head.php');
 ?>
 <head>

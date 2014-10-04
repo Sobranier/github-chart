@@ -42,6 +42,7 @@ Transition
 */
 
 body {
+	min-width:$pg-minwidth;
 	color:$color-text;
 	font-family:Tahoma,Arial,”Helvetica Neue“,”Hiragino Sans GB”,Simsun,sans-self;
 	background-color:$bg-dark;
