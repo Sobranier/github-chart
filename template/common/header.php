@@ -8,7 +8,7 @@
 			$headerlist = array('HOME', 'SPECIALTY', 'WORKS', 'BLOG');
 		}
 		if ($title === 'HOME') {
-			echo '<a href="./">首页<span>HOME</span></a>';
+			echo '<a href="#introduce">首页<span>HOME</span></a>';
 			echo '<a href="template/specialty">特質<span>SPECIALTY</span></a>';
 			echo '<a href="template/works">作品<span>WORKS</span></a>';
 			echo '<a href="template/BLOG">博客<span>BLOG</span></a>';

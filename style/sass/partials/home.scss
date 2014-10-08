@@ -1,0 +1,105 @@
+@import "../modules/basic-responsive";
+
+.pg-home {
+	min-width:$pg-minwidth/2;
+}
+.bigFace {
+	position:relative;
+}
+.bigFace-sy {
+	background-image: url(../../img/background-undo.jpg);
+	visibility:hidden;
+}
+.bigFace-bg {
+	background-image: url(../../img/background-undo.jpg);
+	background-size: cover;
+	-webkit-animation:myface 20s 0s 1;
+	-webkit-filter: brightness(1.0);
+	-webkit-transform: translateZ(-2em);
+	-webkit-transform-style: preserve-3d;
+}
+.bigFace-co {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	//background-image: url(../../img/cloud.png);
+	background-size:cover;
+	background-position:center;
+	overflow:hidden;
+	-webkit-transform: translateZ(-2em);
+	-webkit-transform-style: preserve-3d;
+}
+.bigFaceCo {
+	position:absolute;
+	width:80%;height:120%;
+	top:-10%;
+	background-image: url(../../img/cloud.png);
+	background-size:100% 100%;
+	background-position:center;
+
+}
+
+.bigFaceCo:nth-child(1) {
+	left: -10em;
+	-webkit-transform: translateZ(10em);
+}
+.bigFaceCo:nth-child(2) {
+	left: 0em;
+	-webkit-transform: translateZ(20em);
+}
+.bigFaceCo:nth-child(3) {
+	right: -10em;
+	-webkit-transform: translateZ(10em);
+}
+.bigFaceCo:nth-child(4) {
+	right: 0;
+	-webkit-transform: translateZ(20em);
+}
+
+.cloudAni1 {
+	-webkit-animation:mySlowle 4s 0s 1;
+}
+.cloudAni2 {
+	-webkit-animation:mySlowle 2s 2s 1;
+}
+.cloudAni3 {
+	-webkit-animation:mySlowri 4s 0s 1;
+}
+.cloudAni4 {
+	-webkit-animation:mySlowri 2s 2s 1;
+}
+
+@-webkit-keyframes myface {
+	0% {
+		-webkit-filter: brightness(0.0);
+	}
+	//开始的4s由黑转亮
+	20% {
+		-webkit-filter: brightness(0.6);
+	}
+	//由亮逐渐转黑，转模糊
+	55% {
+		-webkit-filter: brightness(0.4) blur(2px);
+	}
+	//由最黑暗转向光明
+	100% {
+		-webkit-filter: brightness(1.0);
+	}
+}
+
+@-webkit-keyframes mySlowle {
+	0% {}
+	100%{
+		left:-80%;
+		-webkit-transform: translateZ(0em);
+	}
+}
+@-webkit-keyframes mySlowri {
+	0% {}
+	100%{
+		right:-80%;
+		-webkit-transform: translateZ(0em);
+	}
+}
+

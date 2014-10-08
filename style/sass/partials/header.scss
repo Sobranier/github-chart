@@ -40,7 +40,11 @@
 
 .pg-home .header {
 	height:0;
+	.header-logo {
+		display:none;
+	}
 	.header-guide {
+		display:none;
 		font-weight:bold;
 		background-color:$color-January;
 		border:3px solid $color-July;
