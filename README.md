@@ -28,3 +28,6 @@ I am learning php, so I decided to build my personal website by PHP
 
 10-8记
 首页大图区域实现了白云这招，还需要完成小船等图案
+
+10-9记
+首页的波浪基础做好了，暂时没有实现3D的效果
