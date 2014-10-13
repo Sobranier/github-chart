@@ -1,6 +1,6 @@
 <?php
 	$title="WORKS";
-	$cssfile = array('header');
+	$cssfile = array('header', 'works');
 	include_once ('../common/head.php');
 ?>
 <head>
@@ -13,18 +13,13 @@
 	<h1>Hello world!</h1>
 	<div class="wrapper-content" id="pg-uiguide">
 <?php
-	$guideNav = array(
-		"Uiguide"=>"",
-	
-	);
-	include ('../../component/drawerPanel/drawerPanel.php');
+	include_once ('../../component/drawerPanel/drawerPanel.php');
 ?>		
 	</div>
 <?php
 	include_once ('../common/footer.php');
 ?>
-	<script>
-		console.log("hello world");
-	</script>
+
+	<script src="../../js/tagSwift.js"></script>
 </body>
 </html>

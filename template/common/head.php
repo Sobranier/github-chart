@@ -8,7 +8,7 @@
 		if (isset($fullTitle)) {
 			echo $fullTitle;
 		} else if (isset($title)) {
-			echo 'Sobranie | ', $title;
+			echo 'YANWEIQING | ', $title;
 		} else {
 			echo 'Sobranie | 严伟庆';
 		}
