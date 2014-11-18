@@ -31,3 +31,6 @@ I am learning php, so I decided to build my personal website by PHP
 
 10-9记
 首页的波浪基础做好了，暂时没有实现3D的效果
+
+11-17
+本项目的一个同步项目开始，目录在father下

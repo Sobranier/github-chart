@@ -1,0 +1,23 @@
+//盒模型
+
+//width&height
+
+$pg-width-min:980px;
+
+//padding
+
+//margin
+
+//border
+
+@mixin border-radius($radius){
+	border-radius:$radius;
+	-moz-border-raduis:$raduis;
+	-webkit-border-radus:$radius;
+}
+
+@mixin rounded($vert, $horz, $radius: 10px) {
+	border-#{$vert}-#{$horz}-radius: $radius;
+	-moz-border-radius-#{$vert}#{$horz}: $radius;
+	-webkit-border-#{$vert}-#{$horz}-radius: $radius;
+}

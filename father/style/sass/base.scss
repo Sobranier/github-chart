@@ -1,0 +1,29 @@
+@import "compass/reset";
+@import "modules/basic-color";
+@import "modules/basic-size";
+
+.cf {
+	&:after {
+		content:'';
+		display:block;
+		clear:both;
+		height:0;
+		overflow:hidden;
+		visibility:hidden;
+	}
+}
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+.ct {
+	margin:0 auto;
+}
+body {
+	min-width:$pg-width-min;
+	color:$color-text;
+	font-family:Tahoma,Arial,”Helvetica Neue“,”Hiragino Sans GB”,Simsun,sans-self;
+	background-color:$color-bg-dark;
+}
