@@ -1,3 +1,5 @@
 $test-spacing:2px;
+//$test-repeat:no-repeat/repeat-x;
+//单独控制$test-XXX-repeat:no-repeat;
 
 @import "test/*.png";
