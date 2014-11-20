@@ -27,3 +27,4 @@
 		}
 	}
 ?>
+	<script src="http://yui.yahooapis.com/3.18.0/build/yui/yui-min.js"></script>
