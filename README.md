@@ -34,3 +34,6 @@ I am learning php, so I decided to build my personal website by PHP
 
 11-17
 本项目的一个同步项目开始，目录在father下
+
+11-21
+内部项目和外部项目同步进行，没有优先级区分，但是内部在外部的基础上更加规范化，部分测试可能直接通过内部进行，部分通过外部
