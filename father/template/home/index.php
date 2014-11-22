@@ -12,5 +12,9 @@
 
 	</div>
 
+<?php
+	include_once ('template/common/footer.php');
+?>
+
 </body>
 </html>

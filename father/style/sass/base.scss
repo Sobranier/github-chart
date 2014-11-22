@@ -21,9 +21,90 @@
 .ct {
 	margin:0 auto;
 }
+a {
+	color:$color-text;
+	text-decoration:none;
+}
 body {
 	min-width:$pg-width-min;
 	color:$color-text;
 	font-family:Tahoma,Arial,”Helvetica Neue“,”Hiragino Sans GB”,Simsun,sans-self;
-	background-color:$color-bg-dark;
+	background-color:$color-bg-light;
 }
+
+
+
+
+
+.footer {
+	.footer-siteinfo {
+		width:66%;
+		margin:0 auto;
+		border-top:1px solid darken($color-border-normal, 10%);
+		border-bottom:1px solid darken($color-border-normal, 10%);
+		li {
+			float:left;
+			width:33%;
+			height:3em;
+			line-height:3em;
+			text-align:center;
+			font-size:2em;
+			font-weight:bold;
+			color:$color-text-light;
+		}
+	}
+
+	.footer-copyright {
+		background-color:darken($color-bg-light, 10%);
+		height: 7em;
+		padding-top: 2em;
+		text-align:center;
+		.footer-logo {
+			font-size:1.25em;
+			line-height:2em
+		}
+
+		.footer-snsinfo {
+			width:118px;
+			height:26px;
+			margin:10px auto;
+			a {
+				position:relative;
+				display:inline-block;
+				height:26px;
+				width:26px;
+				font-size:20px;
+				line-height:26px;
+				margin-right:15px;
+				border-radius:100%;
+				background-color:darken($color-bg-light, 20%);
+				.hoverbox {
+					position:absolute;
+					display:none;
+					bottom:40px;
+					left:-75px;
+					width:150px;
+					background-color:white;
+					font-size:14px;
+				}
+			}
+			a:hover {
+				background-color:darken($color-bg-light, 30%);
+				.hoverbox {
+					display:block;
+					label {
+						font-weight:bold;
+					}
+				}
+			}
+			.snsinfo__weixin {
+				margin-right:0;
+			}
+		}
+	}
+
+
+
+
+}
+

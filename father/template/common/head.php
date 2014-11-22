@@ -17,7 +17,7 @@
 	</title>
 <?php
 	if ($title === "HOME") {
-		echo '<link rel="stylesheet" href="../style/css/base.css">';
+		echo '<link rel="stylesheet" href="style/css/base.css">';
 	} else {
 		echo '<link rel="stylesheet" href="../../style/css/base.css">';
 		if (isset($cssfile)) {
@@ -28,3 +28,4 @@
 	}
 ?>
 	<script src="http://yui.yahooapis.com/3.18.0/build/yui/yui-min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
