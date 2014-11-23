@@ -17,9 +17,14 @@
 	</title>
 <?php
 	if ($title === "HOME") {
-		echo '<link rel="stylesheet" href="style/css/base.css">';
+		echo '<link rel="stylesheet" href="style/css/partials/base.css">';
+		if (isset($cssfile)) {
+			foreach ($cssfile as $value) {
+				echo '<link rel="stylesheet" href="style/css/partials/', $value, '.css">';
+			}
+		}
 	} else {
-		echo '<link rel="stylesheet" href="../../style/css/base.css">';
+		echo '<link rel="stylesheet" href="../../style/css/partials/base.css">';
 		if (isset($cssfile)) {
 			foreach ($cssfile as $value) {
 				echo '<link rel="stylesheet" href="../../style/css/partials/', $value, '.css">';

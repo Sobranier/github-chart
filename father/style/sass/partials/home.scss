@@ -1,0 +1,195 @@
+@import "sp/base/index";
+@import "sp/home/index";
+
+.pg-home {
+
+	.wrapper {
+		height:678px;
+		overflow:hidden;
+		.wrapper-main {
+			padding-top:40px;
+			width:980px;
+			margin:0 auto;
+
+			h2.wrapper-title {
+				font-size:4em;
+				color:#777;
+				text-align:center;
+				line-height:1.3em;
+				font-weight:bold;
+			}
+			h4.wrapper-describe {
+				font-size:1.2em;
+				color:#777;
+				text-align:center;
+				line-height:1.4em;
+			}
+			
+		}
+
+	}
+
+	.wrapper-about {
+		background-color:#bce2e8;
+		.wrapper-code {
+			position:relative;
+			width:336px;
+			height:108px;
+			padding:25px 20px;
+			margin:50px 0 50px 50px;
+			border-radius:8px;
+			background-color:#38a1b8;
+
+			a {
+				position:relative;
+				display:block;
+				width:220px;
+				color:white;
+				border:1px solid white;
+				margin-bottom:25px;
+				img {
+					position:absolute;
+					left:5px;
+					height:40px;
+				}
+				p {
+					padding:5px 0 5px 60px;
+					width:166px;
+				}
+		
+			}
+			.wechat-code-mini {
+				position:absolute;
+				right:16px;
+				top:36px;
+				width:96px;
+				height:96px;
+				@include base-sprite(wechat-code-96X96);
+			}
+		}
+		.wrapper-pic {
+			float:right;
+			margin-right:64px;
+			margin-top:9px;
+			width:241px;
+			height:385px;
+			@include home-sprite(hw-pic1);
+		}
+	}
+	
+
+	.wrapper-line {
+		overflow:hidden;
+		background-color:#eebbcb;
+		.wrapper-main {
+			height:425px;
+			width:1000px;
+			margin:253px auto 0;
+			padding:0;
+			@include home-sprite(hw-pic2);
+			.wrapper-cc {
+				float:left;
+				height:600px;
+				width:33%;
+				color:#333;
+				text-align:center;
+				font-weight:bold;
+				p {
+					font-size:26px;
+					line-height:40px;
+				}
+				h3.wrapper-describe {
+					font-size:60px;
+					line-height:70px;
+				}
+			}
+		}
+	}
+
+	.wrapper-person {
+		background-color:#a1a46d;
+		.wrapper-main {
+			.wrapper-pic {
+				width:313px;
+				height:674px;
+				margin-left:80px;
+				@include home-sprite(hw-pic3);
+			}
+			.wrapper-cc {
+				margin-top:200px;
+				margin-left:200px;
+				color:white;
+				font-weight:bold;
+				h3.wrapper-describe {
+					font-size:48px;
+					line-height:60px;
+				}
+				p {
+					font-size:24px;
+					line-height:40px;
+				}
+				.wrapper-cc-nav {
+					margin-top:15px;
+					li {
+						float:left;
+						margin-right:10px;
+						width:50px;
+						padding:5px 10px;
+						border:1px solid white;
+						text-align:center;
+					}
+				}
+			
+			}
+		}
+	}
+
+	.wrapper-find {
+		background-color:#a23a52;
+		.wrapper-main {
+			color:white;
+			.wrapper-cc {
+				margin-top:150px;
+				margin-left:90px;
+				h3.wrapper-describe {
+					font-size:48px;
+					line-height:60px;
+				}
+				p {
+					font-size:24px;
+					line-height:40px;
+				}
+			}
+		}
+		.wrapper-pic {
+			width:307px;
+			height:563px;
+			margin-top:75px;
+			margin-left:60px;
+			@include home-sprite(hw-pic4);
+		}
+	}
+
+	.wrapper-show {
+		background-color:#38a1b8;
+		h2 {
+			color:white;
+			font-weight:bold;
+			font-size:100px;
+			padding-top:20px;
+			text-align:center;
+			em {
+				color:#f5f5ee;
+				font-size:120px;
+			}
+		}
+		.wrapper-main {
+			width:100%;
+			margin-top:58px;
+			height:260px;
+			@include home-sprite(hw-pic5);
+			background-repeat:repeat-y;
+		}
+	}
+
+}

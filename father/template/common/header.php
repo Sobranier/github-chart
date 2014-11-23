@@ -1,11 +1,12 @@
 <div class="header">
-	<h1>实战</h1>
-	<div>
+	<div class="header-content cf">
+		<a class="header-logo fl"><h1>暖爸小宝</h1></a>
+		<ul class="navbar fr">
 <?php
 	if (empty($headerlist)) {
 		$headerlist = array('HOME', 'TEST');
 	}
-	$link = '<a href="%s">%s</a>';
+	$link = '<li><a href="%s">%s</a></li>';
 	if ($title === 'HOME') {
 		foreach ($headerlist as $value) {
 			if ($value === 'HOME') {
@@ -26,5 +27,6 @@
 		}
 	}
 ?>
+		</ul>
 	</div>
 </div>
