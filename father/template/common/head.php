@@ -9,26 +9,19 @@
 	if (isset($fullTitle)) {
 		echo $fullTitle;
 	} else if (isset($title)) {
-		echo 'YANWEIQING | ', $title;
+		echo '暖爸 | ', $title;
 	} else {
-		echo 'XX';
+		echo '暖爸小宝';
 	}
 ?>
 	</title>
 <?php
-	if ($title === "HOME") {
-		echo '<link rel="stylesheet" href="style/css/partials/base.css">';
-		if (isset($cssfile)) {
-			foreach ($cssfile as $value) {
-				echo '<link rel="stylesheet" href="style/css/partials/', $value, '.css">';
-			}
-		}
-	} else {
-		echo '<link rel="stylesheet" href="../../style/css/partials/base.css">';
-		if (isset($cssfile)) {
-			foreach ($cssfile as $value) {
-				echo '<link rel="stylesheet" href="../../style/css/partials/', $value, '.css">';
-			}
+	$link = '<link rel="stylesheet" href="%sstyle/css/partials/%s.css">';
+	$rel = ($title === 'HOME') ? '' : '../../';
+	echo sprintf($link, $rel, 'base');
+	if (isset($cssfile)) {
+		foreach ($cssfile as $value) {
+			echo sprintf($link, $rel, $value);
 		}
 	}
 ?>

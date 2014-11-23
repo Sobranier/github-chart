@@ -4,28 +4,33 @@
 		<ul class="navbar fr">
 <?php
 	if (empty($headerlist)) {
-		$headerlist = array('HOME', 'TEST');
+		$headerlist = array('HOME', 'ABOUT', 'TEST');
 	}
 	$link = '<li><a href="%s">%s</a></li>';
 	if ($title === 'HOME') {
-		foreach ($headerlist as $value) {
-			if ($value === 'HOME') {
-				$rel = '#introduce';
-			} else {
-				$rel = 'template/'. $value;
-			}
-			echo sprintf($link, $rel, $value);
-		}
+		$rel_home = '#introduce';
+		$rel_link = 'template/';
 	} else {
-		foreach ($headerlist as $value) {
-			if ($value === 'HOME') {
-				$rel = '../..'; 
-			} else {
-				$rel = '../'. strtolower($value);
-			}
-			echo sprintf($link, $rel, $value);
-		}
+		$rel_home = '../..';
+		$rel_link = '../';
 	}
+	foreach ($headerlist as $value) {
+		$rel = $rel_link. strtolower($value);
+		switch ($value) {
+			case 'HOME':
+				$rel = $rel_home;
+				$name = '首页';
+				break;
+			case 'ABOUT':
+				$name = '关于我们';
+				break;
+			case 'TEST':
+				$name = '测试页';
+				break;
+		}
+		echo sprintf($link, $rel, $name);
+	}
+
 ?>
 		</ul>
 	</div>
