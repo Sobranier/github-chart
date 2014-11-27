@@ -1,0 +1,23 @@
+
+
+body {font-family: "PingHei","Lucida Grande", "Lucida Sans Unicode", "Helvetica","Arial","Verdana","sans-serif"}
+
+/* 大屏幕 */
+@media (min-width: 1200px) {
+    .bacNav{width:1000px;height:200px;background-color:blue;margin:0 auto;}
+}
+ 
+/* 平板电脑和小屏电脑之间的分辨率 */
+@media (min-width: 768px) and (max-width: 979px) {
+    .bacNav{width:700px;height:200px;background-color:blue;margin:0 auto;}
+}
+ 
+/* 横向放置的手机和竖向放置的平板之间的分辨率 */
+@media (max-width: 767px) {
+    .bacNav{width:450px;height:200px;background-color:blue;margin:0 auto;}
+}
+ 
+/* 横向放置的手机及分辨率更小的设备 */
+@media (max-width: 480px) {
+    .bacNav{width:400px;height:200px;background-color:blue;margin:0 auto;}
+}
