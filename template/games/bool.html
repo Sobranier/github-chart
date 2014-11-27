@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        ul {width:400px;height:400px;margin:50px auto}
+        ul li {list-style:none;width:400px;height:20px;}
+        ul li span {display:inline-block;float:left;height:18px;width:18px;line-height:18px;font-size:14px;text-align:center;border:1px solid #ddd;color:white;overflow:hidden;}
+        ul li span:hover {background-color:#ddd;color:#ddd;cursor:pointer;}
+        ul li span.disabled, ul li span.disabled:hover {background-color:#eee;cursor:auto;color:red;}
+        //ul li span.fa-bomb {color:#2BB8AA;color:#eee;}
+    </style>
+
+</head>
+<body>
+
+
+    <script>
+        // 函数的独立话应该分成两部分，一部分是数据部分，一部分是展示部分
+        var fnShow = function (w) {
+            var f = {
+                // 读取数据，产生数组和元素
+                create: function(w) {
+                    var w = parseInt(w);
+                    f.createDiv(w);
+                    var count = f.createBoom(w);
+                    f.play(count, w);
+                },
+                // 初始化盘子
+                createDiv: function(w) {
+                    var table = document.createElement('ul');
+                    for (var i = 0; i < w; i ++) {
+                        var tr = document.createElement('li');
+                        for (var j = 0; j < w; j ++) {
+                            var td = document.createElement('span');
+                            tr.appendChild(td);
+                        }
+                        table.appendChild(tr);
+                    }
+                    document.body.appendChild(table); 
+                },
+                // 初始化炸弹
+                createBoom: function(w) {
+                    var num = parseInt(w*5);
+                    var count = new Array();
+                    for (var i = 0; i < num; i ++) {
+                        fixed = false;
+                        var x = Math.round(Math.random() * w * w);
+
+                        if (i>0) {
+                            for (j=0;j<i;j++) {
+                                if (count[j]==x) {
+                                    fixed=true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (fixed==true) {
+                            i--;
+                        } else {
+                            count[i]=x;
+                        }
+                    }
+                    return count;
+                    console.log(count);
+                },
+                play: function(count, w) {
+                    var table = document.getElementsByTagName('ul')[0];
+                        console.log(table.childNodes.length);
+                    // 写一个循环来给每一个值进行计算
+                    for (var i = 0 ; i < count.length; i ++) {
+                        var lh = (count[i]-1)%w;
+                        if (count[i]%w === 0) {
+                            lw = parseInt((count[i]-1)/w);
+                        } else {
+                            lw = parseInt(count[i]/w);
+                        }
+                        table.childNodes[lw].childNodes[lh].className = 'fa fa-bomb';
+                        f.setNumber(lw, lh, w);
+                    }
+                    table.onclick = function(event) {
+                        var node = event.target;
+                        if (node.className != 'fa fa-bomb') {
+                            node.className = 'disabled';
+                            //f.translate(node
+                        } else {
+                            f.setFail();
+                            alert("boom");
+                        }
+                    }
+                },
+                setNumber: function(lw, lh, w) {
+                    f.changeNumber(lw-1, lh-1, w);
+                    f.changeNumber(lw-1, lh, w);
+                    f.changeNumber(lw-1, lh+1, w);
+                    f.changeNumber(lw, lh-1, w);
+                    f.changeNumber(lw, lh+1, w);
+                    f.changeNumber(lw+1, lh-1, w);
+                    f.changeNumber(lw+1, lh, w);
+                    f.changeNumber(lw+1, lh+1, w);
+                },
+                changeNumber: function(lww, lhh, w) {
+                    if (lww<0||lww>=w||lhh<0||lhh>=w) {
+                        return;
+                    }
+                    var table = document.getElementsByTagName('ul')[0];
+                    if (table.childNodes[lww].childNodes[lhh]) {
+                        var node = table.childNodes[lww].childNodes[lhh];
+                        if (node.className != 'fa fa-bomb') {
+                            console.log(node.className);
+                            var number = node.nodevalue;
+                            if (number) {
+                                number ++;
+                            } else {
+                                number = 1;
+                            }
+                            node.innerHTML= number;
+                        }
+                       
+                    }
+                },
+                setFail: function() {
+                    var table = document.getElementsByTagName('ul')[0];
+                    for (var i = 0; i < table.childNodes.length; i ++) {
+                        var tr = table.childNodes[i];
+                        for (var j = 0; j < tr.childNodes.length; j ++) {
+                            var td = tr.childNodes[j];
+                            if (td.className == 'fa fa-bomb') {
+                                td.style.color = '#2BB8AA';
+                            }
+                        }
+                    }
+                }
+            };
+            f.create(w);
+        }
+        fnShow(20); 
+    </script>
+</body>
+</html>
+
