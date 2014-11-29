@@ -40,3 +40,6 @@ I am learning php, so I decided to build my personal website by PHP
 
 11-26
 考虑到整个项目的整齐性，现在开始所有的尝试都归并到主目录下，成熟以后的架构再应用到father以及将来的目录中。
+
+11-29
+帮朋友做了手机端的婚礼界面
