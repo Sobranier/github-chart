@@ -13,6 +13,9 @@ var init = function() {
 				childs[i].style.height = h + 'px';
 				//bac.childNodes[i].style.height = h + 'px';
 			}
+			if (document.getElementById('J-covers')) {
+				document.getElementById('J-covers').style.height = h + 'px';
+			}
 			set.start(h);
 			set.mus();
 		},
@@ -23,7 +26,6 @@ var init = function() {
 				var node = event.target;
 				if (node.className && node.className.indexOf('J-btn') >= 0) {
 					var page = node.getAttribute('data-id');
-					console.log(page);
 					bac.style.top = "-" + (page*h) +'px';
 				}
 			}   
