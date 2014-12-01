@@ -27,7 +27,7 @@ body {font-family: "PingHei","Lucida Grande", "Lucida Sans Unicode", "Helvetica"
 .show--6 h2 {position:absolute;top:10%;right:5%;font-size:4em;color:#2bb8aa;}
 .show--7 h2 {position:absolute;bottom:30%;width:100%;text-align:center;font-size:7em;}
 .show--last .covers {width:100%;background-color:#fec7e0;filter:alpha(opacity=40);-moz-opacity:0.4;-khtml-opacity: 0.4;opacity: 0.4;color:white;}
-.show--last .word-content {position:absolute;top:20%;font-size:6em;}
+.show--last .word-content {position:absolute;top:17%;font-size:6em;}
 .show--last h3 {width:100%;text-align:center;line-height:2.5em;}
 .show--last h3.address {font-size:0.8em;line-height:1.2em;}
 

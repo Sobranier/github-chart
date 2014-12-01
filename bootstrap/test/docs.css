@@ -1,0 +1,16 @@
+
+.show-grid {
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.show-grid [class*="span"] {
+	background-color:#eee;
+	text-align:center;
+	border-radius:3px;
+	min-height:40px;
+	line-height:40px;
+}
+.show-grid .show-grid [class*="span"] {
+	margin-top:5px;
+	background-color:#ccc;
+}
