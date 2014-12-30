@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Bootstrap -->
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+        <style>
+            td{border:1px solid black;}
+        </style>
+	</head>
+	<body>
+        <table class="table" style="position:relative;width:100%;">
+            <tr>
+                <th id="thArea">1</th>
+                <th>2</th>
+            </tr>
+            <tr>
+                <td>mark</td>
+                <td>mark</td>
+            </tr>
+        </table>
+        <span class="btn" href="javasrript:void(0);" style="position:absolute;z-index:10;left:50%;display:block;width:10px;height:50px;background-color:black;cursor:move;" id="Btn"></span>
+
+    <script>
+        $('#Btn').mousedown(function(){
+            //试图计算目前的鼠标的位置，计算出父节点的宽度以及目前相对左侧的位置。鼠标移动的过程中就计算出需要调节的位置。
+            console.log(1);
+
+        
+        });
+
+        
+
+     
+    </script>
+	</body>
+</html>

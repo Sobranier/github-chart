@@ -1,0 +1,100 @@
+<html>
+	<head>
+	<meta charset="utf-8"/>
+		<style type="text/css">
+			table{
+				border:solid 1px red;
+			}
+			td{border:solid 1px green;}
+			td.res{
+				width: 100px;
+				max-width: 100px;
+				white-space: nowrap;
+				overflow-x: hidden;
+			}
+			.resize{
+				display: none;
+				position: absolute;
+				z-index: -9999;
+				margin-top: -8px;
+				margin-left: -10px;
+			}
+			td.rw{
+				cursor:none;
+				border: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+		
+		<table>
+			<tr>
+				<td>aaaaaaaaaaa</td>
+				<td class="res">bbbbbbbbbbb水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水</td>
+				<td class="rw" draggable="true" rowspan="3"><div class="resize"><-></div></td>
+				<td>ccccccccccc</td>
+			</tr>
+			<tr>
+				<td>a</td>
+				<td>b</td>
+				<td>c</td>
+			</tr>
+			<tr>
+				<td>a</td>
+				<td>b</td>
+				<td>c</td>
+			</tr>
+		</table>
+	</div>
+		<script>
+		(function(){
+			console.log('=================================')
+			var rs = document.getElementsByClassName('rw');
+			var th = rs[0].previousElementSibling;
+			var initX;
+			var initWidth;
+			
+			var move = function(e){
+				this.firstChild.style.top = e.pageY;
+				this.firstChild.style.left = e.pageX;
+			}
+			
+			var hide = function(e){
+				this.firstChild.style.display = 'none';
+			}
+			
+			var show = function(e){
+				this.firstChild.style.display = 'block';
+			};
+			
+			Array.prototype.forEach.call(rs, function(ele){
+				ele.addEventListener('mouseover', show, false);
+				
+				ele.addEventListener('mouseout', hide, false);
+				
+				ele.addEventListener('mousemove', move, false);
+				
+				ele.addEventListener('dragstart', function(e){
+					initX = e.pageX;
+					initWidth = th.offsetWidth;
+					e.dataTransfer.setData('dropEffect', 'none');
+				}, false);
+				
+				ele.addEventListener('drag', function(e){
+					var self = this;
+					var offset = e.pageX - initX;
+					var sty = th.style;
+					sty.maxWidth = initWidth + offset;
+					sty.width = initWidth + offset;
+					
+					show.call(self, e);
+					move.call(self, e);
+				}, false);
+				
+				ele.addEventListener('dragend', hide, false);
+			});
+		})();
+		</script>
+	</body>
+</html>
