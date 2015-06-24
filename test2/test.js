@@ -15,7 +15,7 @@ $(function(){
         // 第三个曲线？？？等等的
         $box.siblings('h3').before($(str));
 
-        $box.on('click', '.icon-toggle-btn', function(e) {
+        $('.icon-toggle').on('click', '.icon-toggle-btn', function(e) {
             e.preventDefault();
             console.log($(this).data('target'));
         });
