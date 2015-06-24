@@ -1,0 +1,17 @@
+{
+    "name": "Git-Chart",
+    "version": "1.0",
+    "description": "This is an chart for your Github commits",
+    "content_scripts": [{
+        "js": ["jquery.js", "test.js"],
+        "matches":["https://github.com/*"]
+    }],
+    "permissions": [
+        "storage"
+    ],
+    "icons": {
+        "48": "icon-48.png",
+        "128": "icon-128.png"
+    },
+    "manifest_version": 2
+}
