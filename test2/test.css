@@ -1,0 +1,23 @@
+.icon-toggle {
+    display:inline-block;float:right;position:relative;top:9px;right:10px;
+}
+.icon-toggle-btn {
+    display:inline-block;
+    width:22px;height:20px;
+    border:1px solid #d8d8d8;
+    border-left: 0;
+}
+.icon-toggle-btn:first-child {
+    border-left:1px solid #bbb;
+    border-top-left-radius:3px;
+    border-bottom-left-radius:3px;
+}
+
+.icon-toggle-btn:last-child {
+    border-top-right-radius:3px;
+    border-bottom-right-radius:3px;
+}
+
+.icon-toggle-btn.active {
+    background-color: #4078c0;
+}
