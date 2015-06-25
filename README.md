@@ -1,6 +1,3 @@
-github图表小工具
+###Renders an new face for GitHub contribution graphs.
 
-todo:
-考虑是否需要使用gulp等进行管理，其实项目比较小，compass等工具也不一定需要引入
 
-因为工具使用到四张图不同类型的图表，在开发过程中可能需要自己研发一套chart组件，想想是不是很兴奋呢

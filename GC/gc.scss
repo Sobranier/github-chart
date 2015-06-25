@@ -1,0 +1,69 @@
+.btn-toggle {
+    float:right;position:relative;top:9px;right:10px;
+}
+.btn-toggle-btn {
+    display:inline-block;
+    width:24px;height:20px;
+    border:1px solid #d8d8d8;
+    border-left: 0;
+
+    &:first-child {
+        border-left:1px solid #bbb;
+        border-top-left-radius:3px;
+        border-bottom-left-radius:3px;
+    }
+
+    &:last-child {
+        border-top-right-radius:3px;
+        border-bottom-right-radius:3px;
+    }
+
+    &.active {
+        background-color: #4078c0;
+        border-color: #4078c0;
+    }
+
+    i {
+        display: block;position:relative;
+        &:before, &:after {
+            content: ''; position: absolute;
+        }
+    }
+
+    &.btn-normal {
+        i {
+            background-color: #bbb;
+            width:11px;height:11px;
+            left:6px;top:4px;
+            &:before, &:after {
+                background-color: #f5f5f5;
+            }
+            &:before {
+                top:5px;left:0px;
+                width:11px;height:1px;
+            }
+            &:after {
+                top:0;left:5px;
+                width:1px;height:11px;
+            }
+        }
+        &.active {
+            i {
+                background-color: #f5f5f5;
+                &:before, &:after {
+                    background-color: #4078c0;
+                }
+            }
+        }
+    }
+
+    &.btn-bar {
+        i {
+            background-color: #f5f5f5;
+            border:1px solid #bbb;
+            width:6px;height:6px;
+
+        }
+    }
+}
+
