@@ -1,4 +1,30 @@
+var GC;
+
+GC = (function() {})()
+
+$(function() {
+    var gc, container;
+    container = document.querySelector('#contributions-calendar');
+    return gc = new GC(container);
+})
+
+/*
+
 $(function(){
+    function init() {
+        var dataList = getData();
+    }
+
+    function getData() {
+        var $svg_g = $('#contributions-calendar').find('.js-calendar-graph-svg>g'),
+            $svg_g_list = $svg_g.children('g');
+        console.log($svg_g_list);
+            
+        
+    }
+
+    init();
+});
 
     function createSection() {
         var $box = $("#contributions-calendar");
@@ -24,7 +50,4 @@ $(function(){
     }
 
 
-
-
-    createSection();
-})
+*/

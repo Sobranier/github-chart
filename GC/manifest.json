@@ -1,10 +1,11 @@
 {
     "name": "Git-Chart",
     "version": "1.0",
-    "description": "This is an chart for your Github commits",
+    "description": "Renders an new face for GitHub contribution graphs.",
     "content_scripts": [{
-        "js": ["jquery.js", "test.js"],
-        "matches":["https://github.com/*"]
+        "css": ["GC.css"],
+        "js": ["jquery.js", "GC.js"],
+        "matches": ["https://github.com/*"]
     }],
     "permissions": [
         "storage"
