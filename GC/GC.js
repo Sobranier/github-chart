@@ -19,20 +19,31 @@ GC = (function() {
      *  [createSection create ui base for GC]
      */
     GC.prototype.createSection = function(container) {
-        var $box = $(container);
         var str = "<div class='btn-toggle'>"
-                + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-normal' data-target='1' aria-label='Normal chart view'><i></i></a>"
-                + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-bar active' data-target='2' aria-label='GC Bar chart view'><i></i></a>"
-                + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-pie' data-target='4' aria-label='GC Pie chart view'><i></i></a>"
+                + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-normal' data-target='noraml' aria-label='Normal chart view'><i></i></a>"
+                + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-bar' data-target='bar' aria-label='GC Bar chart view'><i></i></a>"
+                + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-pie' data-target='pie' aria-label='GC Pie chart view'><i></i></a>"
                 + "</div>";
 
-        $box.siblings('h3').before($(str));
+        $(container).siblings('h3').before($(str));
+
+        chrome.storage.local.get('gcToggleSetting', function(result) {
+            if (!result.gcToggleSetting) {
+                result.gcToggleSetting = 'normal';
+            }
+            $('.btn-' + result.gcToggleSetting).addClass('active');
+        });
+
+        var str = "<div class='gc-wrapper .wrp-bar' style='height:100px'></div>";
+
 
         $('.btn-toggle').on('click', '.btn-toggle-btn', function(e) {
             e.preventDefault();
-            console.log($(this).data('target'));
             $(this).siblings().removeClass('active');
             $(this).addClass('active');
+            chrome.storage.local.set({
+                gcToggleSetting: $(this).data('target')
+            });
         });   
     }
 
