@@ -1,13 +1,23 @@
 var GC;
 
 GC = (function() {
+
     function GC(container) {
+        var dayList;
         if (container) {
             this.createSection(container);
+            dayList = this.getPerDay(container);
+
+            console.log(dayList);
+
         }
     
     }
 
+
+    /**
+     *  [createSection create ui base for GC]
+     */
     GC.prototype.createSection = function(container) {
         var $box = $(container);
         var str = "<div class='btn-toggle'>"
@@ -26,6 +36,26 @@ GC = (function() {
         });   
     }
 
+
+    /**
+     *  [getPerDat prepare data for GC]
+     */
+    GC.prototype.getPerDay = function(container) {
+        var $year = $(container).find('rect.day'),
+            $day,
+            dataList = [];
+
+        for (var i = 0, len = $year.length; i < len; i ++) {
+            $day = $($year[i]);
+            dataList.push({
+                date: $day.data('date'),
+                count: $day.data('count'),
+                fill: $day.attr('fill')
+            });
+        }
+        return dataList;
+    }
+
     return GC;
 })();
 
@@ -35,22 +65,3 @@ $(function() {
     return gc = new GC(container);
 })
 
-/*
-
-$(function(){
-    function init() {
-        var dataList = getData();
-    }
-
-    function getData() {
-        var $svg_g = $('#contributions-calendar').find('.js-calendar-graph-svg>g'),
-            $svg_g_list = $svg_g.children('g');
-        console.log($svg_g_list);
-            
-        
-    }
-
-    init();
-});
-
-*/
