@@ -5,7 +5,7 @@
     "content_scripts": [{
         "css": ["GC.css"],
         "js": ["jquery.js", "GC.js"],
-        "matches": ["https://github.com/*"]
+        "matches": ["https://github.com/*", "http://localhost:8080/GCtest.html"]
     }],
     "permissions": [
         "storage"
