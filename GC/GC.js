@@ -160,7 +160,14 @@ GC = (function() {
      */
     GC.prototype.createPie = function() {
         var data = this.dataBase.day;
-        $('.wrp-pie').append($("<svg width='728' height='470' class='js-calendar-m-svg'></svg>"));
+        $('.wrp-pie').append($("<svg width='728' height='370' class='js-calendar-m-svg'></svg>"));
+
+        var arr = [];
+        arr.push('<g transform="translate(70, 65)"><circle cx="120" cy="120" r="120" stroke="black" stroke-width="1" fill="white" /></g>',
+                '<text x="385" y="180" class="legend-title">Most busy on Monday.</text>'
+            );
+        $('.js-calendar-m-svg').html(arr.join(''));
+
     }
 
     /**
@@ -188,27 +195,36 @@ GC = (function() {
                         '<rect class="legend-blue" data-color="blue" x="22" y="10" width="10" height="10" style="fill:#3399cc"/>',
                         '<rect class="legend-red" data-color="red" x="34" y="10" width="10" height="10" style="fill:#ff6666"/>',
                     '</g>',
-                    '<text x="327" y="65">Contributions in the last year</text>',
-                    '<text class="legend-number" x="552" y="75">', info.ciTotal, '</text>',
-                    '<text class="legend-muted" x="562" y="61">Total</text>',
-                    '<text x="562" y="75">', info.ciDate, '</text>',
-                    '<text x="417" y="110">Busiest month</text>',
-                    '<text class="legend-number" x="552" y="120">', info.bestMonth.count, '</text>',
-                    '<text class="legend-muted" x="562" y="106">Commits</text>',
-                    '<text x="562" y="120">', info.bestMonth.date, '</text>',
-                    '<text x="430" y="155">Busiest day</text>',
-                    '<text class="legend-number" x="552" y="165">', info.bestDay.count, '</text>',
-                    '<text class="legend-muted" x="562" y="149">Commits</text>',
-                    '<text x="562" y="165">', info.bestDay.date, '</text>',
-
-                    '<text x="20" y="330">Longest streak</text>',
-                    '<text class="legend-number" x="142" y="340">', info.longestStreak, '</text>',
-                    '<text class="legend-muted" x="152" y="324">Days</text>',
-                    '<text x="152" y="340">', info.longestDate, '</text>',
-                    '<text x="20" y="375">Current streak</text>',
-                    '<text class="legend-number" x="142" y="385">', info.currentStreak, '</text>',
-                    '<text class="legend-muted" x="152" y="369">Days</text>',
-                    '<text x="152" y="385">', info.currentDate, '</text>'
+                    '<g transform="translate(327, 65)">',
+                        '<text>Contributions in the last year</text>',
+                        '<text class="legend-number" x="225" y="10">', info.ciTotal, '</text>',
+                        '<text class="legend-muted" x="235" y="-4">Total</text>',
+                        '<text x="235" y="10">', info.ciDate, '</text>',
+                    '</g>',
+                    '<g transform="translate(327, 110)">',
+                        '<text x="90">Busiest month</text>',
+                        '<text class="legend-number" x="225" y="10">', info.bestMonth.count, '</text>',
+                        '<text class="legend-muted" x="235" y="-4">Commits</text>',
+                        '<text x="235" y="10">', info.bestMonth.date, '</text>',
+                    '</g>',
+                    '<g transform="translate(327, 155)">',
+                        '<text x="100">Busiest day</text>',
+                        '<text class="legend-number" x="225" y="10">', info.bestDay.count, '</text>',
+                        '<text class="legend-muted" x="235" y="-4">Commits</text>',
+                        '<text x="235" y="10">', info.bestDay.date, '</text>',
+                    '</g>',
+                    '<g transform="translate(-80, 330)">',
+                        '<text x="90">Longest streak</text>',
+                        '<text class="legend-number" x="225" y="10">', info.longestStreak, '</text>',
+                        '<text class="legend-muted" x="235" y="-4">Days</text>',
+                        '<text x="152" y="340">', info.longestDate, '</text>',
+                    '</g>',
+                    '<g transform="translate(-80, 375)">',
+                        '<text x="90">Current streak</text>',
+                        '<text class="legend-number" x="225" y="10">', info.currentStreak, '</text>',
+                        '<text class="legend-muted" x="235" y="-4">Days</text>',
+                        '<text x="235" y="10">', info.currentDate, '</text>',
+                    '</g>'
                     );
         arr = arr.concat(legend);
 
