@@ -3,11 +3,16 @@ var GC;
 GC = (function() {
 
     function GC(target) {
-        var dayList;
         if (target) {
-            this.createSection(target);
-            dayList = this.getPerDay(target);
-            this.createBar(dayList);
+            var tar = this.createSection(target);
+            this.dayList = this.getPerDay(target);
+            switch (tar) {
+                case 'bar':
+                this.createBar();
+                break;
+                case 'pie':
+                this.createPie();
+            }
         }
     }
 
@@ -16,6 +21,8 @@ GC = (function() {
      *  [createSection create ui base for GC]
      */
     GC.prototype.createSection = function(target) {
+        var tar = '',
+            self = this;
 
         var str_btntoggle = "<div class='btn-toggle'>"
                 + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-normal' data-target='normal' aria-label='Normal chart view'><i></i></a>"
@@ -25,25 +32,16 @@ GC = (function() {
 
         $(target).siblings('h3').before($(str_btntoggle));
 
-        var str_wrpbar = "<div class='gc-wrapper wrp-bar'>"
-                + "<svg width='728' height='600' class='js-calendar-d-svg'></svg>"
-                + "</div>";
-        $(target).prepend($(str_wrpbar));
+        var str_wrapper = "<div class='gc-wrapper wrp-bar'></div><div class='gc-wrapper wrp-pie'></div>";
+        $(target).prepend($(str_wrapper));
 
-        var str_wrppie = "<div class='gc-wrapper wrp-pie'>"
-                + "<svg width='728' height='470' class='js-calendar-m-svg'></svg>"
-                + "</div>";
-        $(target).prepend($(str_wrppie));
-
-        $(target).find('.js-calendar-graph, .contrib-footer').addClass('wrp-normal');
+        $(target).find('.js-calendar-graph, .contrib-footer, .contrib-column').addClass('wrp-normal');
 
         // get storage
         chrome.storage.local.get('gcToggleSetting', function(result) {
-            if (!result.gcToggleSetting) {
-                result.gcToggleSetting = 'normal';
-            }
-            $('.btn-' + result.gcToggleSetting).addClass('active');
-            tarChoosen(result.gcToggleSetting);
+            var tar = result.gcToggleSetting ? result.gcToggleSetting : 'normal';
+            $('.btn-' + tar).addClass('active');
+            tarChoosen(tar);
         });
 
         // toggle btn & set storage
@@ -70,19 +68,27 @@ GC = (function() {
                     $('.wrp-bar').removeClass('hidden');
                     $('.wrp-normal').addClass('hidden');
                     $('.wrp-pie').addClass('hidden');
+                    if ($('.js-calendar-d-svg').length === 0) {
+                        self.createBar();
+                    }
                     break;
                 case 'pie':
                     $('.wrp-pie').removeClass('hidden');
                     $('.wrp-bar').addClass('hidden');
                     $('.wrp-normal').addClass('hidden');
+                    if ($('.js-calendar-m-svg').length === 0) {
+                        self.createPie();
+                    }
                     break;  
             }       
         }
+
+        return tar;
     }
 
 
     /**
-     *  [getPerDat prepare data for GC]
+     *  [getPerDay prepare data for GC]
      */
     GC.prototype.getPerDay = function(target) {
         var $year = $(target).find('rect.day'),
@@ -100,11 +106,20 @@ GC = (function() {
         return dataList;
     }
 
+    /**
+     *  [createPie]
+     */
+    GC.prototype.createPie = function() {
+        var data = this.dayList;
+        $('.wrp-pie').append($("<svg width='728' height='470' class='js-calendar-m-svg'></svg>"));
+    }
 
     /**
      *  [createBar]
      */
-    GC.prototype.createBar = function(data) {
+    GC.prototype.createBar = function() {
+        var data = this.dayList;
+        $('.wrp-bar').append($("<svg width='728' height='580' class='js-calendar-d-svg'></svg>"));
         var firstDay = new Date(data[0].date),
             weekDay = firstDay.getDay(),
             firstBar = {
@@ -114,31 +129,38 @@ GC = (function() {
             },
             arr = [],
             line = [],
-            positions = [];
+            legend = [];
 
-       var colors = [{
-            'top': '#eee',
-            'left': '#c6c6c6',
-            'right': '#dbdbdb'
-        }, {
-            'top': '#d6e685',
-            'left': '#adbd5d',
-            'right': '#c1d171'
-        }, {
-            'top': '#8cc665',
-            'left': '#639c3d',
-            'right': '#77b051'
-        }, {
-            'top': '#44a340',
-            'left': '#1b7a15',
-            'right': '#2f8e29'
-        }, {
-            'top': '#1e6823',
-            'left': '#003f00',
-            'right': '#08530d'
-        }]; 
+       line.push('<g class="day2"><polygon points="0,580 ');
+       legend.push('<g class="legend">',
+                        '<rect class="legend-green" data-color="green" x="10" y="10" width="10" height="10" style="fill:#8cc665"/>',
+                        '<rect class="legend-blue" data-color="blue" x="22" y="10" width="10" height="10" style="fill:#3399cc"/>',
+                        '<rect class="legend-red" data-color="red" x="34" y="10" width="10" height="10" style="fill:#ff6666"/>',
+                    '</g>',
+                    '<text x="327" y="65">Contributions in the last year</text>',
+                    '<text class="legend-number" x="552" y="75">6000</text>',
+                    '<text class="legend-muted" x="562" y="61">Total</text>',
+                    '<text x="562" y="75">Jun 26, 2014 – Jun 26, 2015</text>',
+                    '<text x="417" y="110">Busiest month</text>',
+                    '<text class="legend-number" x="552" y="120">600</text>',
+                    '<text class="legend-muted" x="562" y="106">Commits</text>',
+                    '<text x="562" y="120">Octorber</text>',
+                    '<text x="430" y="155">Busiest day</text>',
+                    '<text class="legend-number" x="552" y="165">60</text>',
+                    '<text class="legend-muted" x="562" y="149">Commits</text>',
+                    '<text x="562" y="165">Octorber 6th</text>',
 
-       line.push('<polygon points="0,600 ');
+                    '<text x="20" y="330">Longest streak</text>',
+                    '<text class="legend-number" x="142" y="340">60</text>',
+                    '<text class="legend-muted" x="152" y="324">Days</text>',
+                    '<text x="152" y="340">January 3 – March 13</text>',
+                    '<text x="20" y="375">Current streak</text>',
+                    '<text class="legend-number" x="142" y="385">10</text>',
+                    '<text class="legend-muted" x="152" y="369">Days</text>',
+                    '<text x="152" y="385">January 3 – March 13</text>'
+
+                    );
+        arr = arr.concat(legend);
 
         for (var i = 0, len = data.length; i < len; i ++) {
             if (weekDay === 0) {
@@ -152,25 +174,54 @@ GC = (function() {
             firstBar.lh = firstBar.lh === 0 ? 2 : firstBar.lh;
 
             firstBar.class = parseInt((data[i].count + 2)/3);
-            firstBar.class = firstBar.class > 4 ? 4 : firstBar.class;
+            firstBar.class = firstBar.class > 4 ? 'day4' : 'day' + firstBar.class;
 
-            positions.push({
-                lx: firstBar.lx,
-                ly: firstBar.ly,
-                lh: firstBar.lh
-            });
-            arr.push('<g>',
-                        '<polygon points="', (firstBar.lx-10), ',', (firstBar.ly+5), ' ', (firstBar.lx), ',', (firstBar.ly+10), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), ' ', (firstBar.lx-10), ',', (firstBar.ly+5-firstBar.lh), '" style="fill:', (colors[firstBar.class].left), ';" />', 
-                        '<polygon points="', (firstBar.lx), ',', (firstBar.ly+10), ' ', (firstBar.lx+10), ',', (firstBar.ly+5), ' ', (firstBar.lx+10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), '" style="fill:', (colors[firstBar.class].right), ';" />',
-                        '<polygon points="', (firstBar.lx-10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), ' ', (firstBar.lx+10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly-firstBar.lh), '" style="fill:', (colors[firstBar.class].top), ';" />',
+            arr.push('<g class="', firstBar.class, '">',
+                        '<polygon points="', (firstBar.lx-10), ',', (firstBar.ly+5), ' ', (firstBar.lx), ',', (firstBar.ly+10), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), ' ', (firstBar.lx-10), ',', (firstBar.ly+5-firstBar.lh), '" />', 
+                        '<polygon points="', (firstBar.lx), ',', (firstBar.ly+10), ' ', (firstBar.lx+10), ',', (firstBar.ly+5), ' ', (firstBar.lx+10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), '" />',
+                        '<polygon points="', (firstBar.lx-10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), ' ', (firstBar.lx+10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly-firstBar.lh), '" />',
                     '</g>');
-            line.push(' ', i*2, ',', (600-firstBar.lh));
+            line.push(' ', i*2, ',', (580-firstBar.lh));
 
             weekDay = (weekDay + 1) % 7;
         }
-        line.push(' ', (i-1)*2, ',', (600), '" style="fill:#1e6823;"/>');
+        line.push(' ', (i-1)*2, ',', 580, '" /></g>');
         arr = arr.concat(line);
         $('.js-calendar-d-svg').html(arr.join(''));
+
+        // get storage
+        chrome.storage.local.get('gcColorSetting', function(result) {
+            var color = result.gcColorSetting ? result.gcColorSetting : 'green';
+            colorChoosen(color);
+        });
+
+        // color btn & set storage
+        $('g.legend').on('click', 'rect', function(e) {
+            var color = $(this).data('color');
+            colorChoosen(color);
+            chrome.storage.local.set({
+                gcColorSetting: color
+            });
+        });
+
+
+        function colorChoosen(color) {
+            var $container = $('.wrp-bar');
+            switch (color) {
+                case 'green':
+                    $container.removeClass('gc-blue');
+                    $container.removeClass('gc-red');
+                    break;
+                case 'blue':
+                    $container.addClass('gc-blue');
+                    $container.removeClass('gc-red');
+                    break;
+                case 'red':
+                    $container.removeClass('gc-blue');
+                    $container.addClass('gc-red');
+                    break;
+            }
+        }
     }
 
     return GC;

@@ -121,13 +121,228 @@
     }
 }
 
+.gc-blue {
+    .js-calendar-d-svg {
+        g {
+            &.day4 {
+                polygon{
+                    &:nth-child(1) {
+                        fill:#003366;
+                    }
+                    &:nth-child(2) {
+                        fill:#004275;
+                    }
+                    &:nth-child(3) {
+                        fill:#005083;
+                    }
+                }
+            }
+            &.day3 {
+                 polygon{
+                    &:nth-child(1) {
+                        fill:#006699;
+                    }
+                    &:nth-child(2) {
+                        fill:#0075aa;
+                    }
+                    &:nth-child(3) {
+                        fill:#0083bb;
+                    }
+                }           
+            }
+            &.day2 {
+                 polygon{
+                    &:nth-child(1) {
+                        fill:#3383aa;
+                    }
+                    &:nth-child(2) {
+                        fill:#3391bb;
+                    }
+                    &:nth-child(3) {
+                        fill:#3399cc;
+                    }
+                }           
+            }
+            &.day1 {
+                 polygon{
+                    &:nth-child(1) {
+                        fill:#66aacc;
+                    }
+                    &:nth-child(2) {
+                        fill:#66b5d6;
+                    }
+                    &:nth-child(3) {
+                        fill:#66bfdf;
+                    }
+                }           
+            }   
+        }
+        text.legend-number {
+            fill:#006699;
+        }
+    }
+}
+.gc-red {
+    .js-calendar-d-svg {
+        g {
+            &.day4 {
+                polygon{
+                    &:nth-child(1) {
+                        fill:#660000;
+                    }
+                    &:nth-child(2) {
+                        fill:#662f20;
+                    }
+                    &:nth-child(3) {
+                        fill:#663f30;
+                    }
+                }
+            }
+            &.day3 {
+                 polygon{
+                    &:nth-child(1) {
+                        fill:#990033;
+                    }
+                    &:nth-child(2) {
+                        fill:#993333;
+                    }
+                    &:nth-child(3) {
+                        fill:#996666;
+                    }
+                }           
+            }
+            &.day2 {
+                 polygon{
+                    &:nth-child(1) {
+                        fill:#cc0033;
+                    }
+                    &:nth-child(2) {
+                        fill:#cc3366;
+                    }
+                    &:nth-child(3) {
+                        fill:#cc6666;
+                    }
+                }           
+            }
+            &.day1 {
+                 polygon{
+                    &:nth-child(1) {
+                        fill:#ff6666;
+                    }
+                    &:nth-child(2) {
+                        fill:#ff7c7c;
+                    }
+                    &:nth-child(3) {
+                        fill:#ff9999;
+                    }
+                }           
+            }   
+        }
+        text.legend-number {
+            fill:#990033;
+        }
+    }
+}
 .js-calendar-d-svg {
     g{
+        &.legend {
+            rect {
+                opacity:0.3;
+                &:hover {
+                    stroke:#cccccc;
+                    stroke-width: 1px;
+                    opacity: 0.5;
+                }
+            }
+            &:hover {
+                rect {
+                    opacity:0.6;
+                }
+            }
+        }
         &:hover {
             polygon {
                 stroke:#4078c0;
                 stroke-width: 1px;
             }
         }
+        &.day4 {
+            polygon{
+                &:nth-child(1) {
+                    fill:#003f00;
+                }
+                &:nth-child(2) {
+                    fill:#08530d;
+                }
+                &:nth-child(3) {
+                    fill:#1e6823;
+                }
+            }
+        }
+        &.day3 {
+             polygon{
+                &:nth-child(1) {
+                    fill:#1b7a15;
+                }
+                &:nth-child(2) {
+                    fill:#2f8e29;
+                }
+                &:nth-child(3) {
+                    fill:#44a340;
+                }
+            }           
+        }
+        &.day2 {
+             polygon{
+                &:nth-child(1) {
+                    fill:#639c3d;
+                }
+                &:nth-child(2) {
+                    fill:#77b051;
+                }
+                &:nth-child(3) {
+                    fill:#8cc665;
+                }
+            }           
+        }
+        &.day1 {
+             polygon{
+                &:nth-child(1) {
+                    fill:#adbd5d;
+                }
+                &:nth-child(2) {
+                    fill:#c1d171;
+                }
+                &:nth-child(3) {
+                    fill:#d6e685;
+                }
+            }           
+        }
+        &.day0 {
+             polygon{
+                &:nth-child(1) {
+                    fill:#c6c6c6;
+                }
+                &:nth-child(2) {
+                    fill:#dbdbdb;
+                }
+                &:nth-child(3) {
+                    fill:#eeeeee;
+                }
+            }           
+        }
     }
+    text {
+        font-size:12px;
+        fill:#aaa;
+        &.legend-muted {
+            fill:#333;
+        }
+        &.legend-number {
+            font-size:30px;
+            fill:#1b7a15;
+            text-anchor: end;
+        }
+    }
+    
 }
