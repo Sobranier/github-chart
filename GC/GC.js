@@ -5,7 +5,7 @@ GC = (function() {
     function GC(target) {
         if (target) {
             var tar = this.createSection(target);
-            this.dayList = this.getPerDay(target);
+            this.dataBase = this.getPerDay(target);
             switch (tar) {
                 case 'bar':
                 this.createBar();
@@ -93,24 +93,73 @@ GC = (function() {
     GC.prototype.getPerDay = function(target) {
         var $year = $(target).find('rect.day'),
             $day,
-            dataList = [];
+            dataList = {
+                day: []
+            },
+            bestDay = {
+                count: 0
+            },
+            bestMonth = {
+                count: 0
+            },
+            date,
+            count,
+            month = {},
+            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
         for (var i = 0, len = $year.length; i < len; i ++) {
             $day = $($year[i]);
-            dataList.push({
-                date: $day.data('date'),
-                count: $day.data('count'),
-                fill: $day.attr('fill')
+            date = $day.data('date');
+            count = $day.data('count');
+            m = date.split('-')[1];
+            month[m] = month[m] ? month[m] + count : count;
+            dataList.day.push({
+                date: date,
+                count: count
             });
+            if (count > bestDay.count) {
+                bestDay.date = date;
+                bestDay.count = count;
+            }
         }
+
+        for (var i in month) {
+            if (month[i] > bestMonth.count) {
+                bestMonth.count = month[i];
+                bestMonth.date = i;
+            }
+        }
+
+        bestMonth.date = months[parseInt(bestMonth.date)];
+        
+        var $contribColumns = $('.contrib-column'),
+            ciTotal = $($contribColumns[0]).find('span.contrib-number').html(),
+            ciDate = $($contribColumns[0]).find('span:last-child').html(),
+            longestStreak = $($contribColumns[1]).find('span.contrib-number').html(),
+            longestDate = $($contribColumns[1]).find('span:last-child').html(),
+            currentStreak = $($contribColumns[2]).find('span.contrib-number').html(),
+            currentDate = $($contribColumns[2]).find('span:last-child').html();
+
+        dataList.info = {
+            ciTotal: ciTotal.split(' ')[0],
+            ciDate: ciDate,
+            longestStreak: longestStreak.split(' ')[0],
+            longestDate: longestDate,
+            currentStreak: currentStreak.split(' ')[0],
+            currentDate: currentDate,
+            bestDay: bestDay,
+            bestMonth: bestMonth
+        }
+
         return dataList;
     }
+
 
     /**
      *  [createPie]
      */
     GC.prototype.createPie = function() {
-        var data = this.dayList;
+        var data = this.dataBase.day;
         $('.wrp-pie').append($("<svg width='728' height='470' class='js-calendar-m-svg'></svg>"));
     }
 
@@ -118,9 +167,9 @@ GC = (function() {
      *  [createBar]
      */
     GC.prototype.createBar = function() {
-        var data = this.dayList;
-        $('.wrp-bar').append($("<svg width='728' height='580' class='js-calendar-d-svg'></svg>"));
-        var firstDay = new Date(data[0].date),
+        var data = this.dataBase.day,
+            info = this.dataBase.info,
+            firstDay = new Date(data[0].date),
             weekDay = firstDay.getDay(),
             firstBar = {
                 lx: 125 - 11 * weekDay,
@@ -131,34 +180,35 @@ GC = (function() {
             line = [],
             legend = [];
 
-       line.push('<g class="day2"><polygon points="0,580 ');
-       legend.push('<g class="legend">',
+        $('.wrp-bar').append($("<svg width='728' height='580' class='js-calendar-d-svg'></svg>"));
+
+        line.push('<g class="day2"><polygon points="0,580 ');
+        legend.push('<g class="legend">',
                         '<rect class="legend-green" data-color="green" x="10" y="10" width="10" height="10" style="fill:#8cc665"/>',
                         '<rect class="legend-blue" data-color="blue" x="22" y="10" width="10" height="10" style="fill:#3399cc"/>',
                         '<rect class="legend-red" data-color="red" x="34" y="10" width="10" height="10" style="fill:#ff6666"/>',
                     '</g>',
                     '<text x="327" y="65">Contributions in the last year</text>',
-                    '<text class="legend-number" x="552" y="75">6000</text>',
+                    '<text class="legend-number" x="552" y="75">', info.ciTotal, '</text>',
                     '<text class="legend-muted" x="562" y="61">Total</text>',
-                    '<text x="562" y="75">Jun 26, 2014 – Jun 26, 2015</text>',
+                    '<text x="562" y="75">', info.ciDate, '</text>',
                     '<text x="417" y="110">Busiest month</text>',
-                    '<text class="legend-number" x="552" y="120">600</text>',
+                    '<text class="legend-number" x="552" y="120">', info.bestMonth.count, '</text>',
                     '<text class="legend-muted" x="562" y="106">Commits</text>',
-                    '<text x="562" y="120">Octorber</text>',
+                    '<text x="562" y="120">', info.bestMonth.date, '</text>',
                     '<text x="430" y="155">Busiest day</text>',
-                    '<text class="legend-number" x="552" y="165">60</text>',
+                    '<text class="legend-number" x="552" y="165">', info.bestDay.count, '</text>',
                     '<text class="legend-muted" x="562" y="149">Commits</text>',
-                    '<text x="562" y="165">Octorber 6th</text>',
+                    '<text x="562" y="165">', info.bestDay.date, '</text>',
 
                     '<text x="20" y="330">Longest streak</text>',
-                    '<text class="legend-number" x="142" y="340">60</text>',
+                    '<text class="legend-number" x="142" y="340">', info.longestStreak, '</text>',
                     '<text class="legend-muted" x="152" y="324">Days</text>',
-                    '<text x="152" y="340">January 3 – March 13</text>',
+                    '<text x="152" y="340">', info.longestDate, '</text>',
                     '<text x="20" y="375">Current streak</text>',
-                    '<text class="legend-number" x="142" y="385">10</text>',
+                    '<text class="legend-number" x="142" y="385">', info.currentStreak, '</text>',
                     '<text class="legend-muted" x="152" y="369">Days</text>',
-                    '<text x="152" y="385">January 3 – March 13</text>'
-
+                    '<text x="152" y="385">', info.currentDate, '</text>'
                     );
         arr = arr.concat(legend);
 
