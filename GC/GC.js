@@ -302,15 +302,13 @@ GC = (function() {
             firstDay = new Date(data[0].date),
             weekDay = firstDay.getDay(),
             firstBar = {
-                lx: 125 - 11 * weekDay,
+                lx: 92 - 11 * weekDay,
                 ly: 100 + 6 * weekDay,
                 lh: 0
             },
             arr = [],
             line = [],
             legend = [];
-
-        console.log(info.longestDate);
 
         $('.wrp-bar').append($("<svg width='728' height='580' class='js-calendar-d-svg'></svg>"));
 
@@ -355,10 +353,10 @@ GC = (function() {
 
         for (var i = 0, len = data.length; i < len; i ++) {
             if (weekDay === 0) {
-                firstBar.lx += 7 * 11;
+                firstBar.lx += 7 * 12;
                 firstBar.ly -= 5 * 6;
             } else {
-                firstBar.lx -= 11;
+                firstBar.lx -= 12;
                 firstBar.ly += 6;
             }
             firstBar.lh = data[i].count * 7;
