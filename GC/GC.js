@@ -130,7 +130,7 @@ GC = (function() {
             }
         }
 
-        bestMonth.date = months[parseInt(bestMonth.date)];
+        bestMonth.date = months[parseInt(bestMonth.date) - 1];
         
         var $contribColumns = $('.contrib-column'),
             ciTotal = $($contribColumns[0]).find('span.contrib-number').html(),
