@@ -12,3 +12,5 @@ If you would like to hack on this, you need to install compass, when you change 
 compass compile --output-style compressed --force
 ```
 You can hack on the website of GitHub or just use my demo file in ```DEV```, it relies on my personal github commits data and needs less run time;
+
+[chrome gitub-chart](https://chrome.google.com/webstore/detail/github-chart/apaldppjjcjgjddfobajdclccgkbkkje)
