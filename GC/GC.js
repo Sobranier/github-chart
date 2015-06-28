@@ -159,13 +159,136 @@ GC = (function() {
      *  [createPie]
      */
     GC.prototype.createPie = function() {
-        var data = this.dataBase.day;
-        $('.wrp-pie').append($("<svg width='728' height='370' class='js-calendar-m-svg'></svg>"));
+        var data = this.dataBase.day,
+            total = this.dataBase.info.ciTotal,
+            firstDay = new Date(data[0].date),
+            weekDay = firstDay.getDay(),
+            weekData = [],
+            pieData = [
+                {angle: 52},
+                {angle: 51},
+                {angle: 51},
+                {angle: 52},
+                {angle: 51},
+                {angle: 51},
+                {angle: 52}
+            ],
+            bestWeek = {
+                count:0
+            },
+            colors = [
+                '#97b552',
+                '#2ec7c9',
+                '#5ab1ef',
+                '#ffb980',
+                '#d87a80',
+                '#8d98b3',
+                '#e5cf0d'
+            ],
+            weeks = [
+                'Sunday',
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thurday',
+                'Friday',
+                'Saturday'
+            ],
+            startPoint = {},
+            endPoint = {},
+            polyline = {},
+            totalAngle = 0,
+            radius,fill;
+
+        
+        for (var i = 0, len = data.length; i < len; i ++) {
+            weekData[weekDay] = weekData[weekDay] ? weekData[weekDay] + data[i].count : data[i].count;
+            weekDay = (weekDay + 1) % 7;
+        }
+
+        for (var i = 0; i < 7; i ++) {
+            if (weekData[i] === undefined) {
+                weekData[i] = 0;
+                continue;
+            }
+            if (weekData[i] > bestWeek.count) {
+                bestWeek.count = weekData[i];
+                bestWeek.name = i;
+            }
+        }
+
+
+        for (var i = 0; i < 7; i ++) {
+            radius = weekData[i]/bestWeek.count*115;
+            fill = colors[i];
+
+            startPoint.x = 120 + Math.sin(totalAngle/180*Math.PI) * radius;
+            startPoint.y = 120 - Math.cos(totalAngle/180*Math.PI) * radius;
+            totalAngle += pieData[i].angle;
+            endPoint.x = 120 + Math.sin(totalAngle/180*Math.PI) * radius;
+            endPoint.y = 120 - Math.cos(totalAngle/180*Math.PI) * radius;
+
+            polyline.angle = (totalAngle-26)/180*Math.PI;
+            polyline.x1 = 120 + Math.sin(polyline.angle) * radius;
+            polyline.y1 = 120 - Math.cos(polyline.angle) * radius;
+            polyline.x2 = 120 + Math.sin(polyline.angle) * 135;
+            polyline.y2 = 120 - Math.cos(polyline.angle) * 140;
+            if (polyline.angle > Math.PI) {
+                polyline.x3 = polyline.x2 - 20;
+                polyline.align = 'end';
+            } else {
+                polyline.x3 = polyline.x2 + 20;
+                polyline.align = 'start';
+            }
+            polyline.y3 = polyline.y2;
+
+
+            pieData[i] = {
+                start: {
+                    x: startPoint.x,
+                    y: startPoint.y
+                },
+                end: {
+                    x: endPoint.x,
+                    y: endPoint.y
+                },
+                radius: radius,
+                fill: fill,
+                pol: {
+                    x1: polyline.x1,
+                    y1: polyline.y1,
+                    x2: polyline.x2,
+                    y2: polyline.y2,
+                    x3: polyline.x3,
+                    y3: polyline.y3,
+                    align: polyline.align
+                }
+            };
+        }
+
+        $('.wrp-pie').append($("<svg width='728' height='340' class='js-calendar-m-svg'></svg>"));
 
         var arr = [];
-        arr.push('<g transform="translate(70, 65)"><circle cx="120" cy="120" r="120" stroke="black" stroke-width="1" fill="white" /></g>',
-                '<text x="385" y="180" class="legend-title">Most busy on Monday.</text>'
+        arr.push('<g transform="translate(70, 50)">',
+                    '<circle cx="120" cy="120" r="120" stroke="#bbb" stroke-width="1" fill="white" />');
+        for (var i = 0; i < 7; i ++) {
+            arr.push(
+                    '<path d="M120 120,L', pieData[i].start.x, ' ', pieData[i].start.y, ' A', pieData[i].radius, ' ', pieData[i].radius, ' 0 0 1 ', pieData[i].end.x, ' ', pieData[i].end.y, ' Z" fill="', pieData[i].fill, '" />',
+                    '<polyline points="', pieData[i].pol.x1, ',', pieData[i].pol.y1, ' ', pieData[i].pol.x2, ',', pieData[i].pol.y2, ' ', pieData[i].pol.x3, ',', pieData[i].pol.y3, '" style="fill:transparent;stroke:', pieData[i].fill, ';stroke-width:1"/>',
+                    '<text x="', pieData[i].pol.x3, '" y="', pieData[i].pol.y3, '" fill="', pieData[i].fill, '" text-anchor="', pieData[i].pol.align, '">', weeks[i], '</text>'
+                );
+        }
+        arr.push(
+                    '<circle cx="120" cy="120" r="15" fill="white" />',
+                    '<circle cx="120" cy="120" r="9" stroke="#bbb" stroke-width="1" fill="white" />',
+                '</g>'
             );
+        if (bestWeek.name !== undefined) {
+            arr.push('<text x="360" y="180" class="legend-title">Most busy on ', weeks[bestWeek.name], '.</text>');
+        } else {
+            arr.push('<text x="370" y="180" class="legend-title">Seems not busy.</text>');
+        }
+
         $('.js-calendar-m-svg').html(arr.join(''));
 
     }
@@ -186,6 +309,8 @@ GC = (function() {
             arr = [],
             line = [],
             legend = [];
+
+        console.log(info.longestDate);
 
         $('.wrp-bar').append($("<svg width='728' height='580' class='js-calendar-d-svg'></svg>"));
 
@@ -217,7 +342,7 @@ GC = (function() {
                         '<text x="90">Longest streak</text>',
                         '<text class="legend-number" x="225" y="10">', info.longestStreak, '</text>',
                         '<text class="legend-muted" x="235" y="-4">Days</text>',
-                        '<text x="152" y="340">', info.longestDate, '</text>',
+                        '<text x="235" y="10">', info.longestDate, '</text>',
                     '</g>',
                     '<g transform="translate(-80, 375)">',
                         '<text x="90">Current streak</text>',

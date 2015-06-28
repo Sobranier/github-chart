@@ -351,4 +351,12 @@
         font-size:30px;
         font-weight:bold;
     }
+    path {
+        opacity: 0.6;
+        &:hover {
+            stroke:#4078c0;
+            stroke-width: 1px;
+            opacity: 1;
+        }
+    }
 }
