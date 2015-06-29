@@ -310,6 +310,11 @@ GC = (function() {
             line = [],
             legend = [];
 
+        if (weekDay === 0) {
+            firstBar.lx -= 11 * 8;
+            firstBar.ly += 6 * 8;
+        }
+
         $('.wrp-bar').append($("<svg width='728' height='580' class='js-calendar-d-svg'></svg>"));
 
         line.push('<g class="day2"><polygon points="0,580 ');
