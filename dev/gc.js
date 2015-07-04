@@ -1,7 +1,6 @@
 var GC;
 
 GC = (function() {
-
     function GC(target) {
         if (target) {
             var tar = this.createSection(target);
