@@ -23,13 +23,14 @@ GC = (function() {
         var tar = '',
             self = this;
 
-        var str_btntoggle = "<div class='btn-toggle'>"
-                + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-normal' data-target='normal' aria-label='Normal chart view'><i></i></a>"
-                + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-bar' data-target='bar' aria-label='GC Bar chart view'><i></i></a>"
-                + "<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-pie' data-target='pie' aria-label='GC Pie chart view'><i></i></a>"
-                + "</div>";
+        var str_btntoggle = [];
+        str_btntoggle.push("<div class='btn-toggle'>");
+        str_btntoggle.push("<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-normal' data-target='normal' aria-label='Normal chart view'><i></i></a>");
+        str_btntoggle.push("<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-bar' data-target='bar' aria-label='GC Bar chart view'><i></i></a>");
+        str_btntoggle.push("<a href='#' class='tooltipped tooltipped-nw btn-toggle-btn btn-pie' data-target='pie' aria-label='GC Pie chart view'><i></i></a>");
+        str_btntoggle.push("</div>");
 
-        $(target).siblings('h3').before($(str_btntoggle));
+        $(target).siblings('h3').before($(str_btntoggle.join('')));
 
         var str_wrapper = "<div class='gc-wrapper wrp-bar'></div><div class='gc-wrapper wrp-pie'></div>";
         $(target).prepend($(str_wrapper));
@@ -131,6 +132,7 @@ GC = (function() {
 
         bestMonth.date = months[parseInt(bestMonth.date) - 1];
         
+        /*
         var $contribColumns = $('.contrib-column'),
             ciTotal = $($contribColumns[0]).find('span.contrib-number').html(),
             ciDate = $($contribColumns[0]).find('span:last-child').html(),
@@ -148,7 +150,7 @@ GC = (function() {
             currentDate: currentDate,
             bestDay: bestDay,
             bestMonth: bestMonth
-        }
+        }*/
 
         return dataList;
     }
@@ -159,7 +161,7 @@ GC = (function() {
      */
     GC.prototype.createPie = function() {
         var data = this.dataBase.day,
-            total = this.dataBase.info.ciTotal,
+            total = 0, //this.dataBase.info.ciTotal,
             firstDay = new Date(data[0].date),
             weekDay = firstDay.getDay(),
             weekData = [],
@@ -216,6 +218,9 @@ GC = (function() {
             }
         }
 
+        for (var i = 0; i < 7; i ++) {
+            total += weekData[i];
+        }
 
         for (var i = 0; i < 7; i ++) {
             radius = weekData[i]/bestWeek.count*115;
@@ -297,7 +302,7 @@ GC = (function() {
      */
     GC.prototype.createBar = function() {
         var data = this.dataBase.day,
-            info = this.dataBase.info,
+            info = {}, //this.dataBase.info,
             firstDay = new Date(data[0].date),
             weekDay = firstDay.getDay(),
             firstBar = {
@@ -321,7 +326,8 @@ GC = (function() {
                         '<rect class="legend-green" data-color="green" x="10" y="10" width="10" height="10" style="fill:#8cc665"/>',
                         '<rect class="legend-blue" data-color="blue" x="22" y="10" width="10" height="10" style="fill:#3399cc"/>',
                         '<rect class="legend-red" data-color="red" x="34" y="10" width="10" height="10" style="fill:#ff6666"/>',
-                    '</g>',
+                    '</g>');
+        /*
                     '<g transform="translate(327, 65)">',
                         '<text>Contributions in the last year</text>',
                         '<text class="legend-number" x="225" y="10">', info.ciTotal, '</text>',
@@ -353,6 +359,7 @@ GC = (function() {
                         '<text x="235" y="10">', info.currentDate, '</text>',
                     '</g>'
                     );
+                    */
         arr = arr.concat(legend);
 
         for (var i = 0, len = data.length; i < len; i ++) {
