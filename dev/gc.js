@@ -1,16 +1,17 @@
 var GC;
 
 GC = (function() {
+
     function GC(target) {
         if (target) {
             var tar = this.createSection(target);
             this.dataBase = this.getPerDay(target);
             switch (tar) {
                 case 'bar':
-                this.createBar();
-                break;
+                    this.createBar();
+                    break;
                 case 'pie':
-                this.createPie();
+                    this.createPie();
             }
         }
     }
@@ -58,7 +59,7 @@ GC = (function() {
 
         // deside tar
         function tarChoosen(tar) {
-             switch (tar) {
+            switch (tar) {
                 case 'normal':
                     $('.wrp-normal').removeClass('hidden');
                     $('.wrp-bar').addClass('hidden');
@@ -79,8 +80,8 @@ GC = (function() {
                     if ($('.js-calendar-m-svg').length === 0) {
                         self.createPie();
                     }
-                    break;  
-            }       
+                    break;
+            }
         }
 
         return tar;
@@ -131,26 +132,11 @@ GC = (function() {
         }
 
         bestMonth.date = months[parseInt(bestMonth.date) - 1];
-        
-        /*
-        var $contribColumns = $('.contrib-column'),
-            ciTotal = $($contribColumns[0]).find('span.contrib-number').html(),
-            ciDate = $($contribColumns[0]).find('span:last-child').html(),
-            longestStreak = $($contribColumns[1]).find('span.contrib-number').html(),
-            longestDate = $($contribColumns[1]).find('span:last-child').html(),
-            currentStreak = $($contribColumns[2]).find('span.contrib-number').html(),
-            currentDate = $($contribColumns[2]).find('span:last-child').html();
 
         dataList.info = {
-            ciTotal: ciTotal.split(' ')[0],
-            ciDate: ciDate,
-            longestStreak: longestStreak.split(' ')[0],
-            longestDate: longestDate,
-            currentStreak: currentStreak.split(' ')[0],
-            currentDate: currentDate,
             bestDay: bestDay,
             bestMonth: bestMonth
-        }*/
+        }
 
         return dataList;
     }
@@ -201,7 +187,7 @@ GC = (function() {
             totalAngle = 0,
             radius,fill;
 
-        
+
         for (var i = 0, len = data.length; i < len; i ++) {
             weekData[weekDay] = weekData[weekDay] ? weekData[weekDay] + data[i].count : data[i].count;
             weekDay = (weekDay + 1) % 7;
@@ -274,19 +260,19 @@ GC = (function() {
 
         var arr = [];
         arr.push('<g transform="translate(70, 50)">',
-                    '<circle cx="120" cy="120" r="120" stroke="#bbb" stroke-width="1" fill="white" />');
+            '<circle cx="120" cy="120" r="120" stroke="#bbb" stroke-width="1" fill="white" />');
         for (var i = 0; i < 7; i ++) {
             arr.push(
-                    '<path d="M120 120,L', pieData[i].start.x, ' ', pieData[i].start.y, ' A', pieData[i].radius, ' ', pieData[i].radius, ' 0 0 1 ', pieData[i].end.x, ' ', pieData[i].end.y, ' Z" fill="', pieData[i].fill, '" />',
-                    '<polyline points="', pieData[i].pol.x1, ',', pieData[i].pol.y1, ' ', pieData[i].pol.x2, ',', pieData[i].pol.y2, ' ', pieData[i].pol.x3, ',', pieData[i].pol.y3, '" style="fill:transparent;stroke:', pieData[i].fill, ';stroke-width:1"/>',
-                    '<text x="', pieData[i].pol.x3, '" y="', pieData[i].pol.y3, '" fill="', pieData[i].fill, '" text-anchor="', pieData[i].pol.align, '">', weeks[i], '</text>'
-                );
+                '<path d="M120 120,L', pieData[i].start.x, ' ', pieData[i].start.y, ' A', pieData[i].radius, ' ', pieData[i].radius, ' 0 0 1 ', pieData[i].end.x, ' ', pieData[i].end.y, ' Z" fill="', pieData[i].fill, '" />',
+                '<polyline points="', pieData[i].pol.x1, ',', pieData[i].pol.y1, ' ', pieData[i].pol.x2, ',', pieData[i].pol.y2, ' ', pieData[i].pol.x3, ',', pieData[i].pol.y3, '" style="fill:transparent;stroke:', pieData[i].fill, ';stroke-width:1"/>',
+                '<text x="', pieData[i].pol.x3, '" y="', pieData[i].pol.y3, '" fill="', pieData[i].fill, '" text-anchor="', pieData[i].pol.align, '">', weeks[i], '</text>'
+            );
         }
         arr.push(
-                    '<circle cx="120" cy="120" r="15" fill="white" />',
-                    '<circle cx="120" cy="120" r="9" stroke="#bbb" stroke-width="1" fill="white" />',
-                '</g>'
-            );
+            '<circle cx="120" cy="120" r="15" fill="white" />',
+            '<circle cx="120" cy="120" r="9" stroke="#bbb" stroke-width="1" fill="white" />',
+            '</g>'
+        );
         if (bestWeek.name !== undefined) {
             arr.push('<text x="360" y="180" class="legend-title">Most busy on ', weeks[bestWeek.name], '.</text>');
         } else {
@@ -302,7 +288,7 @@ GC = (function() {
      */
     GC.prototype.createBar = function() {
         var data = this.dataBase.day,
-            info = {}, //this.dataBase.info,
+            info = this.dataBase.info,
             firstDay = new Date(data[0].date),
             weekDay = firstDay.getDay(),
             firstBar = {
@@ -323,43 +309,23 @@ GC = (function() {
 
         line.push('<g class="day2"><polygon points="0,580 ');
         legend.push('<g class="legend">',
-                        '<rect class="legend-green" data-color="green" x="10" y="10" width="10" height="10" style="fill:#8cc665"/>',
-                        '<rect class="legend-blue" data-color="blue" x="22" y="10" width="10" height="10" style="fill:#3399cc"/>',
-                        '<rect class="legend-red" data-color="red" x="34" y="10" width="10" height="10" style="fill:#ff6666"/>',
-                    '</g>');
-        /*
-                    '<g transform="translate(327, 65)">',
-                        '<text>Contributions in the last year</text>',
-                        '<text class="legend-number" x="225" y="10">', info.ciTotal, '</text>',
-                        '<text class="legend-muted" x="235" y="-4">Total</text>',
-                        '<text x="235" y="10">', info.ciDate, '</text>',
-                    '</g>',
-                    '<g transform="translate(327, 110)">',
-                        '<text x="90">Busiest month</text>',
-                        '<text class="legend-number" x="225" y="10">', info.bestMonth.count, '</text>',
-                        '<text class="legend-muted" x="235" y="-4">Commits</text>',
-                        '<text x="235" y="10">', info.bestMonth.date, '</text>',
-                    '</g>',
-                    '<g transform="translate(327, 155)">',
-                        '<text x="100">Busiest day</text>',
-                        '<text class="legend-number" x="225" y="10">', info.bestDay.count, '</text>',
-                        '<text class="legend-muted" x="235" y="-4">Commits</text>',
-                        '<text x="235" y="10">', info.bestDay.date, '</text>',
-                    '</g>',
-                    '<g transform="translate(-80, 330)">',
-                        '<text x="90">Longest streak</text>',
-                        '<text class="legend-number" x="225" y="10">', info.longestStreak, '</text>',
-                        '<text class="legend-muted" x="235" y="-4">Days</text>',
-                        '<text x="235" y="10">', info.longestDate, '</text>',
-                    '</g>',
-                    '<g transform="translate(-80, 375)">',
-                        '<text x="90">Current streak</text>',
-                        '<text class="legend-number" x="225" y="10">', info.currentStreak, '</text>',
-                        '<text class="legend-muted" x="235" y="-4">Days</text>',
-                        '<text x="235" y="10">', info.currentDate, '</text>',
-                    '</g>'
-                    );
-                    */
+            '<rect class="legend-green" data-color="green" x="10" y="10" width="10" height="10" style="fill:#8cc665"/>',
+            '<rect class="legend-blue" data-color="blue" x="22" y="10" width="10" height="10" style="fill:#3399cc"/>',
+            '<rect class="legend-red" data-color="red" x="34" y="10" width="10" height="10" style="fill:#ff6666"/>',
+            '</g>',
+            '<g transform="translate(327, 40)">',
+            '<text x="90">Busiest month</text>',
+            '<text class="legend-number" x="225" y="10">', info.bestMonth.count, '</text>',
+            '<text class="legend-muted" x="235" y="-4">Commits</text>',
+            '<text x="235" y="10">', info.bestMonth.date, '</text>',
+            '</g>',
+            '<g transform="translate(327, 100)">',
+            '<text x="100">Busiest day</text>',
+            '<text class="legend-number" x="225" y="10">', info.bestDay.count, '</text>',
+            '<text class="legend-muted" x="235" y="-4">Commits</text>',
+            '<text x="235" y="10">', info.bestDay.date, '</text>',
+            '</g>'
+        );
         arr = arr.concat(legend);
 
         for (var i = 0, len = data.length; i < len; i ++) {
@@ -377,10 +343,10 @@ GC = (function() {
             firstBar.class = firstBar.class > 4 ? 'day4' : 'day' + firstBar.class;
 
             arr.push('<g class="', firstBar.class, '">',
-                        '<polygon points="', (firstBar.lx-10), ',', (firstBar.ly+5), ' ', (firstBar.lx), ',', (firstBar.ly+10), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), ' ', (firstBar.lx-10), ',', (firstBar.ly+5-firstBar.lh), '" />', 
-                        '<polygon points="', (firstBar.lx), ',', (firstBar.ly+10), ' ', (firstBar.lx+10), ',', (firstBar.ly+5), ' ', (firstBar.lx+10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), '" />',
-                        '<polygon points="', (firstBar.lx-10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), ' ', (firstBar.lx+10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly-firstBar.lh), '" />',
-                    '</g>');
+                '<polygon points="', (firstBar.lx-10), ',', (firstBar.ly+5), ' ', (firstBar.lx), ',', (firstBar.ly+10), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), ' ', (firstBar.lx-10), ',', (firstBar.ly+5-firstBar.lh), '" />',
+                '<polygon points="', (firstBar.lx), ',', (firstBar.ly+10), ' ', (firstBar.lx+10), ',', (firstBar.ly+5), ' ', (firstBar.lx+10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), '" />',
+                '<polygon points="', (firstBar.lx-10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly+10-firstBar.lh), ' ', (firstBar.lx+10), ',', (firstBar.ly+5-firstBar.lh), ' ', (firstBar.lx), ',', (firstBar.ly-firstBar.lh), '" />',
+                '</g>');
             line.push(' ', i*2, ',', (580-firstBar.lh));
 
             weekDay = (weekDay + 1) % 7;
@@ -432,4 +398,3 @@ $(function() {
     target = document.querySelector('#contributions-calendar');
     return gc = new GC(target);
 })
-
