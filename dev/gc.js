@@ -85,7 +85,7 @@ GC = (function() {
         }
 
         return tar;
-    }
+    };
 
 
     /**
@@ -124,10 +124,10 @@ GC = (function() {
             }
         }
 
-        for (var i in month) {
-            if (month[i] > bestMonth.count) {
-                bestMonth.count = month[i];
-                bestMonth.date = i;
+        for (var tmp in month) {
+            if (month[tmp] > bestMonth.count) {
+                bestMonth.count = month[tmp];
+                bestMonth.date = tmp;
             }
         }
 
@@ -136,10 +136,10 @@ GC = (function() {
         dataList.info = {
             bestDay: bestDay,
             bestMonth: bestMonth
-        }
+        };
 
         return dataList;
-    }
+    };
 
 
     /**
@@ -193,28 +193,28 @@ GC = (function() {
             weekDay = (weekDay + 1) % 7;
         }
 
-        for (var i = 0; i < 7; i ++) {
-            if (weekData[i] === undefined) {
-                weekData[i] = 0;
+        for (var tmp = 0; tmp < 7; tmp ++) {
+            if (weekData[tmp] === undefined) {
+                weekData[tmp] = 0;
                 continue;
             }
-            if (weekData[i] > bestWeek.count) {
-                bestWeek.count = weekData[i];
-                bestWeek.name = i;
+            if (weekData[tmp] > bestWeek.count) {
+                bestWeek.count = weekData[tmp];
+                bestWeek.name = tmp;
             }
         }
 
-        for (var i = 0; i < 7; i ++) {
-            total += weekData[i];
+        for (var n = 0; n < 7; n ++) {
+            total += weekData[n];
         }
 
-        for (var i = 0; i < 7; i ++) {
-            radius = weekData[i]/bestWeek.count*115;
-            fill = colors[i];
+        for (var t = 0; t < 7; t ++) {
+            radius = weekData[t]/bestWeek.count*115;
+            fill = colors[t];
 
             startPoint.x = 120 + Math.sin(totalAngle/180*Math.PI) * radius;
             startPoint.y = 120 - Math.cos(totalAngle/180*Math.PI) * radius;
-            totalAngle += pieData[i].angle;
+            totalAngle += pieData[t].angle;
             endPoint.x = 120 + Math.sin(totalAngle/180*Math.PI) * radius;
             endPoint.y = 120 - Math.cos(totalAngle/180*Math.PI) * radius;
 
@@ -233,7 +233,7 @@ GC = (function() {
             polyline.y3 = polyline.y2;
 
 
-            pieData[i] = {
+            pieData[t] = {
                 start: {
                     x: startPoint.x,
                     y: startPoint.y
@@ -261,7 +261,7 @@ GC = (function() {
         var arr = [];
         arr.push('<g transform="translate(70, 50)">',
             '<circle cx="120" cy="120" r="120" stroke="#bbb" stroke-width="1" fill="white" />');
-        for (var i = 0; i < 7; i ++) {
+        for (i = 0; i < 7; i ++) {
             arr.push(
                 '<path d="M120 120,L', pieData[i].start.x, ' ', pieData[i].start.y, ' A', pieData[i].radius, ' ', pieData[i].radius, ' 0 0 1 ', pieData[i].end.x, ' ', pieData[i].end.y, ' Z" fill="', pieData[i].fill, '" />',
                 '<polyline points="', pieData[i].pol.x1, ',', pieData[i].pol.y1, ' ', pieData[i].pol.x2, ',', pieData[i].pol.y2, ' ', pieData[i].pol.x3, ',', pieData[i].pol.y3, '" style="fill:transparent;stroke:', pieData[i].fill, ';stroke-width:1"/>',
@@ -281,7 +281,7 @@ GC = (function() {
 
         $('.js-calendar-m-svg').html(arr.join(''));
 
-    }
+    };
 
     /**
      *  [createBar]
@@ -388,13 +388,12 @@ GC = (function() {
                     break;
             }
         }
-    }
+    };
 
     return GC;
 })();
 
 $(function() {
-    var gc, target;
-    target = document.querySelector('#contributions-calendar');
-    return gc = new GC(target);
-})
+    var target = document.querySelector('#contributions-calendar');
+    return new GC(target);
+});
