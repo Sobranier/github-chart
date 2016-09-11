@@ -393,7 +393,13 @@ GC = (function() {
     return GC;
 })();
 
+/*
 $(function() {
     var target = document.querySelector('#contributions-calendar');
     return new GC(target);
+});
+*/
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log('document ready');
 });
