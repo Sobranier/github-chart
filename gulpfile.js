@@ -1,15 +1,15 @@
-var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    watch = require('gulp-watch'),
-    rename = require('gulp-rename'),
-    jshint = require('gulp-jshint'),
-    uglify = require('gulp-uglify'),
-    minifyCSS = require('gulp-minify-css'),
-    runSquence = require('run-sequence'),
-    del = require('del');
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var watch = require('gulp-watch');
+var rename = require('gulp-rename');
+var jshint = require('gulp-jshint');
+var uglify = require('gulp-uglify');
+var minifyCSS = require('gulp-minify-css');
+var runSquence = require('run-sequence');
+var clean = require('gulp-clean');
 
 /**
- *  jshint
+ *  jshint 暂时保留
  */
 gulp.task('jshint', function () {
     gulp.src('./dev/*.js')
@@ -27,7 +27,7 @@ gulp.task('compress', function () {
         .pipe(rename(function(path) {
             path.basename += '-min';
         }))
-        .pipe(gulp.dest('GC'));
+        .pipe(gulp.dest('build'));
 });
 
 
@@ -41,9 +41,18 @@ gulp.task('sass', function () {
         .pipe(rename(function(path) {
             path.basename += '-min';
         }))
-        .pipe(gulp.dest('GC'));
+        .pipe(gulp.dest('build'));
 });
 
+gulp.task('clean', function () {
+    return gulp.src('build', {read: false})
+        .pipe(clean({force: true}));
+});
+
+gulp.task('static', function () {
+    return gulp.src(['./assets/jquery.js', './dev/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
+        .pipe(gulp.dest('build'));
+});
 
 /**
  *  watch task
@@ -55,7 +64,6 @@ gulp.task('watch', function () {
     watch('./dev/*.js', function () {
         runSquence('jshint', 'compress');
     });
-
 })
 
 
@@ -63,7 +71,7 @@ gulp.task('watch', function () {
  *  defalut task
  */
 gulp.task('default', function () {
-    runSquence('sass', 'jshint', 'compress');
+    runSquence('clean', 'static', 'sass', 'jshint', 'compress');
 });
 
 
