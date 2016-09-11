@@ -2,7 +2,7 @@
 This is an extension for Github Users.
 It renders an Bar graphs & Pie graphs to show your commits better.
 
-![demo](https://github.com/Sobranier/github-chart/blob/master/dev/show/4-1.png)
+![demo](http://static-file-pdd.oss-cn-hangzhou.aliyuncs.com/image/4-3.png)
 
 ####Develop
 
