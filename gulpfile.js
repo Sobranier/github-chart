@@ -23,34 +23,34 @@ gulp.task('webpack', function(callback) {
  *  sass
  */
 gulp.task('sass', function () {
-    return gulp.src('./dev/*.scss')
+    return gulp.src('./src/*.scss')
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(minifyCSS())
         .pipe(rename(function(path) {
             path.basename += '-min';
         }))
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('dest'));
 });
 
 gulp.task('clean', function () {
-    return gulp.src('./build', {read: false})
+    return gulp.src('./dest', {read: false})
         .pipe(clean({force: true}));
 });
 
 gulp.task('static', function () {
-    return gulp.src(['./assets/jquery.js', './dev/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
-        .pipe(gulp.dest('build'));
+    return gulp.src(['./assets/jquery.js', './src/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
+        .pipe(gulp.dest('dest'));
 });
 
 /**
  *  watch task
  */
 gulp.task('watch', function () {
-    watch('./dev/*.scss', function () {
+    watch('./src/*.scss', function () {
         runSquence('sass');
     });
-    watch('./dev/*.js', function () {
-        runSquence('jshint', 'compress');
+    watch('./src/**/*.js', function () {
+        runSquence('webpack');
     });
 })
 

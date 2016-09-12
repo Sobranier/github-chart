@@ -1,3 +1,8 @@
+
+import navTpl from './tpl/nav.js';
+import wrapperTpl from './tpl/wrapper.js';
+
+
 var GC;
 
 GC = (function() {
@@ -393,13 +398,49 @@ GC = (function() {
     return GC;
 })();
 
-/*
-$(function() {
-    var target = document.querySelector('#contributions-calendar');
-    return new GC(target);
-});
-*/
 
-document.addEventListener("DOMContentLoaded", function() {
-    console.log('document ready');
-});
+class createChart {
+    constructor(target) {
+        this.Ncontainer = target;
+        this.originData = [];
+        this.renderNav();
+        this.getOriginData();
+        this.renderTab();
+    }
+
+    renderNav() {
+        let docFragment = document.createDocumentFragment();
+        let Nnav = document.createElement('div');
+        Nnav.className = 'btn-toggle';
+        Nnav.innerHTML = navTpl();
+        docFragment.appendChild(Nnav);
+        this.Ncontainer.parentNode.insertBefore(docFragment, this.Ncontainer.previousSibling.previousSibling);
+        return;
+        let Nh3 = this.Ncontainer.previousSibling;
+
+        Nh3.appendChild(docFragment);
+
+    }
+
+    renderTab() {
+    
+    }
+
+    getOriginData() {
+        let Ndays = this.Ncontainer.querySelectorAll('rect.day');
+        let dayCount = Ndays.length;
+        for (let i = 0; i < dayCount; i ++) {
+            this.originData.push({
+                date: Ndays[i].getAttribute('data-date'),
+                count: Ndays[i].getAttribute('data-count')
+            });
+        }
+    }
+}
+
+
+let target = document.getElementById('contributions-calendar');
+
+if (target) {
+    new createChart(target);
+}
