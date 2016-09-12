@@ -1,11 +1,8 @@
+import getOriginData from './utils/getOriginData';
+import renderNav from './utils/renderNav';
+import wrapperTpl from './tpl/wrapper';
 
-import navTpl from './tpl/nav.js';
-import wrapperTpl from './tpl/wrapper.js';
-
-
-var GC;
-
-GC = (function() {
+var GC = (function() {
 
     function GC(target) {
         if (target) {
@@ -400,26 +397,19 @@ GC = (function() {
 
 
 class createChart {
+
     constructor(target) {
         this.Ncontainer = target;
         this.originData = [];
+        this.Nnav = {};
+
         this.renderNav();
         this.getOriginData();
         this.renderTab();
     }
 
     renderNav() {
-        let docFragment = document.createDocumentFragment();
-        let Nnav = document.createElement('div');
-        Nnav.className = 'btn-toggle';
-        Nnav.innerHTML = navTpl();
-        docFragment.appendChild(Nnav);
-        this.Ncontainer.parentNode.insertBefore(docFragment, this.Ncontainer.previousSibling.previousSibling);
-        return;
-        let Nh3 = this.Ncontainer.previousSibling;
-
-        Nh3.appendChild(docFragment);
-
+        this.Nnav = renderNav(this.Ncontainer);
     }
 
     renderTab() {
@@ -427,14 +417,7 @@ class createChart {
     }
 
     getOriginData() {
-        let Ndays = this.Ncontainer.querySelectorAll('rect.day');
-        let dayCount = Ndays.length;
-        for (let i = 0; i < dayCount; i ++) {
-            this.originData.push({
-                date: Ndays[i].getAttribute('data-date'),
-                count: Ndays[i].getAttribute('data-count')
-            });
-        }
+        this.originData = getOriginData(Array.from(this.Ncontainer.querySelectorAll('rect.day')));
     }
 }
 

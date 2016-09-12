@@ -1,9 +1,9 @@
 var path = require('path');
 
 module.exports = {
-    entry: './dev/gc.js',
+    entry: './src/gc.js',
     output: {
-        path: './build',
+        path: './dest',
         filename: 'gc-min.js',
         chunkFilename: 'gc.js'
     },

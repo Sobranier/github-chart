@@ -69,4 +69,3 @@ gulp.task('default', function (callback) {
 gulp.task('dev', function () {
     runSquence('default', 'watch');
 })
-

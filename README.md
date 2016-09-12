@@ -1,16 +1,19 @@
-###Renders an new face for GitHub contribution graphs.
+# Renders an new face for GitHub Contribution Graphs.
+
 This is an extension for Github Users.
-It renders an Bar graphs & Pie graphs to show your commits better.
+It renders an Bar graph or a Pie graph to show your commits better.
 
 ![demo](http://static-file-pdd.oss-cn-hangzhou.aliyuncs.com/image/4-3.png)
 
-####Develop
+### For Developers
 
-If you would like to hack on this, you need to install compass, when you change the ```.scss``` file in ```DEV```, run 
-
-```
-compass compile --output-style compressed --force
-```
-You can hack on the website of GitHub or just use my demo file in ```DEV```, it relies on my personal github commits data and needs less run time;
+If you would like to hack on this, you need to install compass, when you change the ```.scss``` file in ```src```, run 
 
 [chrome gitub-chart](https://chrome.google.com/webstore/detail/github-chart/apaldppjjcjgjddfobajdclccgkbkkje)
+
+## TODO:
+
+* add test
+* rm jquery
+* add echarts
+* add try catch
