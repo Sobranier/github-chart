@@ -361,6 +361,9 @@
     }
 }
 
-.gc-wrapper.hidden {
-    display: none;
+.gc-wrapper {
+    height: 400px;
+    &.hidden {
+        display: none;
+    }
 }

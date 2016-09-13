@@ -4,7 +4,7 @@ module.exports = {
     entry: './src/gc.js',
     output: {
         path: './dest',
-        filename: 'gc-min.js',
+        filename: 'gc.js',
         chunkFilename: 'gc.js'
     },
     module: {

@@ -31,7 +31,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('copy', function () {
-    return gulp.src(['assets/echarts.simple.min.js', './src/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
+    return gulp.src(['./src/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
         .pipe(gulp.dest('dest'));
 });
 

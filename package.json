@@ -25,12 +25,18 @@
     "url": "git+https://github.com/Sobranier/github-chart.git"
   },
   "keywords": [
-    "github", "chart", "echars", "chrome"
+    "github",
+    "chart",
+    "echars",
+    "chrome"
   ],
   "author": "yanweiqing",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Sobranier/github-chart/issues"
   },
-  "homepage": "https://github.com/Sobranier/github-chart#readme"
+  "homepage": "https://github.com/Sobranier/github-chart#readme",
+  "dependencies": {
+    "echarts": "^3.2.3"
+  }
 }

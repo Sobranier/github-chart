@@ -1,14 +1,13 @@
-import navTpl from '../tpl/nav';
+import tpl from '../tpl/nav';
 
 export default (container) => {
-    let Nnav = document.createElement('div');
-    Nnav.className = 'btn-toggle';
-    Nnav.innerHTML = navTpl();
+    let fragment = document.createDocumentFragment();
+    let Node = document.createElement('div');
+    Node.className = 'btn-toggle';
+    Node.innerHTML = tpl();
+    fragment.appendChild(Node);
 
-    let docFragment = document.createDocumentFragment();
-    docFragment.appendChild(Nnav);
+    container.parentNode.insertBefore(fragment, container.previousSibling.previousSibling);
 
-    container.parentNode.insertBefore(docFragment, container.previousSibling.previousSibling);
-
-    return Nnav;
+    return Node;
 }

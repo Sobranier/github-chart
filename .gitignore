@@ -4,3 +4,5 @@ node_modules/
 dest/
 dest.zip
 npm-debug.log
+old.bac
+static/

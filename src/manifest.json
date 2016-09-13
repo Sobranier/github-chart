@@ -4,8 +4,8 @@
     "description": "Renders an new face for GitHub Contribution Graphs.",
     "content_scripts": [{
         "css": ["gc-min.css"],
-        "js": ["gc-min.js", "echarts.simple.min.js"],
-        "matches": ["https://github.com/*", "http://localhost:8080/dev/demo.html"]
+        "js": ["gc.js"],
+        "matches": ["https://github.com/*", "http://localhost:8080/static/demo.html"]
     }],
     "permissions": [
         "storage"
