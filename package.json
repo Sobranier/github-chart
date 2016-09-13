@@ -1,7 +1,7 @@
 {
   "name": "github-chart",
   "version": "1.0.0",
-  "description": "This is an extension for Github Users. It renders an Bar graphs & Pie graphs to show your commits better.",
+  "description": "This is a chrome extension for Github Users. It renders an Bar graphs & Pie graphs to show your commits better.",
   "main": "index.js",
   "devDependencies": {
     "babel-loader": "^6.2.5",
@@ -25,7 +25,7 @@
     "url": "git+https://github.com/Sobranier/github-chart.git"
   },
   "keywords": [
-    "github"
+    "github", "chart", "echars", "chrome"
   ],
   "author": "yanweiqing",
   "license": "MIT",

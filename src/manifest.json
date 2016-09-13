@@ -1,10 +1,10 @@
 {
     "name": "GitHub-Chart",
     "version": "1.0.6",
-    "description": "Renders an new face for GitHub contribution graphs.",
+    "description": "Renders an new face for GitHub Contribution Graphs.",
     "content_scripts": [{
         "css": ["gc-min.css"],
-        "js": ["jquery.js", "gc-min.js"],
+        "js": ["gc-min.js", "echarts.simple.min.js"],
         "matches": ["https://github.com/*", "http://localhost:8080/dev/demo.html"]
     }],
     "permissions": [

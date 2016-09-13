@@ -6,12 +6,8 @@ var minifyCSS = require('gulp-minify-css');
 var runSquence = require('run-sequence');
 var clean = require('gulp-clean');
 var webpack = require('webpack');
-
 var webpackConfig = require('./webpackConfig.js');
 
-/**
-  * js webpack
-  */
 gulp.task('webpack', function(callback) {
     webpack(webpackConfig, function(err, status) {
         console.log(status.toString())
@@ -19,9 +15,6 @@ gulp.task('webpack', function(callback) {
     });
 });
 
-/**
- *  sass
- */
 gulp.task('sass', function () {
     return gulp.src('./src/*.scss')
         .pipe(sass.sync().on('error', sass.logError))
@@ -37,14 +30,11 @@ gulp.task('clean', function () {
         .pipe(clean({force: true}));
 });
 
-gulp.task('static', function () {
-    return gulp.src(['./assets/jquery.js', './src/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
+gulp.task('copy', function () {
+    return gulp.src(['assets/echarts.simple.min.js', './src/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
         .pipe(gulp.dest('dest'));
 });
 
-/**
- *  watch task
- */
 gulp.task('watch', function () {
     watch('./src/*.scss', function () {
         runSquence('sass');
@@ -59,7 +49,7 @@ gulp.task('watch', function () {
  *  defalut task
  */
 gulp.task('default', function (callback) {
-    runSquence('clean', 'static', 'sass', 'webpack', callback);
+    runSquence('clean', 'copy', 'sass', 'webpack', callback);
 });
 
 

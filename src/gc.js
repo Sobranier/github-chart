@@ -1,6 +1,6 @@
 import getOriginData from './utils/getOriginData';
 import renderNav from './utils/renderNav';
-import wrapperTpl from './tpl/wrapper';
+import renderWrapper from './utils/renderWrapper';
 
 var GC = (function() {
 
@@ -402,14 +402,20 @@ class createChart {
         this.Ncontainer = target;
         this.originData = [];
         this.Nnav = {};
+        this.Nwrapper = [];
 
         this.renderNav();
         this.getOriginData();
+        this.renderWrapper();
         this.renderTab();
     }
 
     renderNav() {
         this.Nnav = renderNav(this.Ncontainer);
+    }
+
+    renderWrapper() {
+        this.Nwrapper = renderWrapper(this.Ncontainer);
     }
 
     renderTab() {
