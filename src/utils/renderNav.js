@@ -9,5 +9,15 @@ export default () => {
 
     document.querySelector('.js-contribution-graph').insertBefore(fragment, document.querySelector('.js-select-menu'));
 
+    Node.addEventListener('click', (event) => {
+        let targetName = event.target.getAttribute('data-target');
+        let className = event.target.className;
+        if (className.indexOf('active') < 0) {
+            event.target.className = className+ ' active';
+        } else {
+            event.target.className = className.slice(0, -7);
+        }
+    })
+
     return Node;
 }

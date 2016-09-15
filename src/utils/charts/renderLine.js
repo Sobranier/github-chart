@@ -10,8 +10,8 @@ let option = {
         }
     },
     grid: {
-        left: 10,
-        right: 10,
+        left: 0,
+        right: 0,
         top: 0,
         bottom: 0
     },
@@ -44,14 +44,19 @@ let option = {
         type: 'line',
         showSymbol: false,
         hoverAnimation: false,
+        itemStyle: {
+            normal: {
+                color: '#44a340'
+            }
+        },
         areaStyle: {
             normal: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
-                    color: '#c23531'
+                    color: '#8cc665'
                 }, {
                     offset: 1,
-                    color: '#B03A5B'
+                    color: '#8cc665'
                 }])
             }
         },

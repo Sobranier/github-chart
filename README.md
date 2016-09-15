@@ -13,8 +13,5 @@ If you would like to hack on this, you need to install compass, when you change 
 
 ## TODO:
 
-* add test
-* rm jquery
-* add echarts
 * add try catch
 * 性能优化
