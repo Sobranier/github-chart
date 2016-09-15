@@ -6,7 +6,7 @@ import 'echarts/lib/component/title';
 let option = {
     title : {
         text: 'Most busy on',
-        subtext: 'Monday',
+        subtext: '',
         x: '68%',
         y: 'center'
     },
@@ -36,6 +36,7 @@ let option = {
 export default (originData, Ntarget) => {
     let myChart = echarts.init(Ntarget);
     let weekDay = new Date(originData[0].date).getDay();
+    let busyDay = { value: 0, name: 'Sunday' };
     let data = [
         { value: 0, name: 'Sunday' },
         { value: 0, name: 'Monday' },
@@ -46,12 +47,19 @@ export default (originData, Ntarget) => {
         { value: 0, name: 'Saturday' }
     ];
 
-    originData.forEach((item) => {
+    originData.forEach(item => {
         data[weekDay ++].value += item.count;
         weekDay %= 7;
     });
 
+    data.forEach(item => {
+        if (item.value > busyDay.value) {
+            busyDay = Object.assign({}, item);
+        }
+    })
+
     option.series[0].data = data;
+    option.title.subtext = busyDay.name;
 
     myChart.setOption(option);
 }

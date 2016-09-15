@@ -11,7 +11,7 @@ class createChart {
         this.Nnav = {};
         this.Nwrapper = [];
 
-        this.renderNav();
+        // this.renderNav();
         this.getOriginData();
         this.renderWrapper();
         this.renderChart();
