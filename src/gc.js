@@ -18,7 +18,7 @@ class createChart {
     }
 
     renderNav() {
-        this.Nnav = renderNav(this.Ncontainer);
+        this.Nnav = renderNav();
     }
 
     renderWrapper() {
@@ -35,7 +35,7 @@ class createChart {
 }
 
 
-let target = document.getElementById('contributions-calendar');
+let target = document.querySelector('.js-calendar-graph-svg');
 
 if (target) {
     new createChart(target);

@@ -10,8 +10,10 @@ let option = {
         }
     },
     grid: {
-        left: 0,
-        right: 0
+        left: 10,
+        right: 10,
+        top: 0,
+        bottom: 0
     },
     xAxis: {
         splitLine: {
@@ -38,9 +40,21 @@ let option = {
     },
     series: [{
         name: 'contributions',
+        smooth: true,
         type: 'line',
         showSymbol: false,
         hoverAnimation: false,
+        areaStyle: {
+            normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#c23531'
+                }, {
+                    offset: 1,
+                    color: '#B03A5B'
+                }])
+            }
+        },
         data: []
     }]
 };
