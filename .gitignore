@@ -6,3 +6,4 @@ dest.zip
 npm-debug.log
 old.bac
 static/
+.idea/

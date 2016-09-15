@@ -42,7 +42,7 @@ export default (originData, Ntarget) => {
         { value: 0, name: 'Monday' },
         { value: 0, name: 'Tuesday' },
         { value: 0, name: 'Wednesday' },
-        { value: 0, name: 'Thurday' },
+        { value: 0, name: 'Thursday' },
         { value: 0, name: 'Friday' },
         { value: 0, name: 'Saturday' }
     ];
