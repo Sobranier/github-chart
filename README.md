@@ -3,18 +3,24 @@
 This is an extension for Github Users.
 It renders a Bar graph and a Pie graph to show your commits better.
 
-![demo](http://static-file-pdd.oss-cn-hangzhou.aliyuncs.com/image/bobo.png)
+![demo](http://static-file-pdd.oss-cn-hangzhou.aliyuncs.com/image/gc-chart-1.png)
+
+![demo](http://static-file-pdd.oss-cn-hangzhou.aliyuncs.com/image/gc-chart-2.png)
+
+## For Users
+
+Open [chrome gitub-chart](https://chrome.google.com/webstore/detail/github-chart/apaldppjjcjgjddfobajdclccgkbkkje) and add this extension to your chrome
 
 ### For Developers
 
-If you would like to hack on this, you need to install compass, when you change the ```.scss``` file in ```src```, run 
+* npm install
+* gulp dev      // it will listen to your file change under './src'
+* http-server   // open 'localhost:8080' and use 'demo.html'
 
-[chrome gitub-chart](https://chrome.google.com/webstore/detail/github-chart/apaldppjjcjgjddfobajdclccgkbkkje)
 
 ## TODO:
 
 * add try catch
-* 性能优化
-* 刷新问题
-* hover 的效果
-* 展示信息
+* performance optimization
+* deal with the github website year change
+* hover
