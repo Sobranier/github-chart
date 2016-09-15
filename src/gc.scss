@@ -364,10 +364,14 @@
 
 .gc-wrapper {
     height: 400px;
+    position: relative;
     &.hidden {
         display: none;
     }
     &.wra-line {
         height: 200px;
     }
+    &.wra-pie {
+    }
 }
+

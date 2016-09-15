@@ -1,8 +1,15 @@
 import echarts from 'echarts/lib/echarts';
 import 'echarts/lib/chart/pie';
 import 'echarts/lib/component/tooltip';
+import 'echarts/lib/component/title';
 
 let option = {
+    title : {
+        text: 'Most busy on',
+        subtext: 'Monday',
+        x: '68%',
+        y: 'center'
+    },
     tooltip : {
         trigger: 'item',
         formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -19,7 +26,7 @@ let option = {
             name:'Work Day',
             type:'pie',
             radius : [30, 110],
-            center : ['25%', '50%'],
+            center : ['30%', '50%'],
             roseType : 'area',
             data:[]
         }
@@ -45,6 +52,8 @@ export default (originData, Ntarget) => {
     });
 
     option.series[0].data = data;
+
+    console.log(option);
 
     myChart.setOption(option);
 }
