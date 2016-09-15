@@ -1,5 +1,6 @@
 .btn-toggle {
-    float:right;position:relative;top:9px;right:10px;margin-left:20px;
+    float: right;
+    margin-left: 20px;
 }
 .btn-toggle-btn {
     display:inline-block;
@@ -18,12 +19,8 @@
         border-bottom-right-radius:3px;
     }
 
-    &.active {
-        background-color: #4078c0;
-        border-color: #4078c0;
-    }
-
     i {
+        z-index: -1;
         display: block;position:relative;
         &:before, &:after {
             content: ''; position: absolute;
@@ -65,7 +62,7 @@
             -webkit-transform: skewY(30deg);
             transform: skewY(30deg);
         }
-        i{
+        i {
             top:8px;left:6px;
             width:6px;height:6px;
             &:before {
@@ -83,15 +80,13 @@
         }
         &.active {
             i, i:before, i:after {
-                background-color: #4078c0;
-                border-color:#f5f5f5;
+                border-color:#4078c0;
             }
         }
     }
 
     &.btn-pie {
         i {
-            z-index:2;
             top:8px;left:6px;
             width:12px;height:5px;
             background-color:#f5f5f5;
@@ -114,137 +109,15 @@
         }
         &.active{
             i, i:before, i:after {
-                background-color:#4078c0;
-                border-color:#f5f5f5;
+                border-color:#4078c0;
             }
         }
     }
 }
 
-.gc-blue {
-    .js-calendar-d-svg {
-        g {
-            &.day4 {
-                polygon{
-                    &:nth-child(1) {
-                        fill:#003366;
-                    }
-                    &:nth-child(2) {
-                        fill:#004275;
-                    }
-                    &:nth-child(3) {
-                        fill:#005083;
-                    }
-                }
-            }
-            &.day3 {
-                 polygon{
-                    &:nth-child(1) {
-                        fill:#006699;
-                    }
-                    &:nth-child(2) {
-                        fill:#0075aa;
-                    }
-                    &:nth-child(3) {
-                        fill:#0083bb;
-                    }
-                }           
-            }
-            &.day2 {
-                 polygon{
-                    &:nth-child(1) {
-                        fill:#3383aa;
-                    }
-                    &:nth-child(2) {
-                        fill:#3391bb;
-                    }
-                    &:nth-child(3) {
-                        fill:#3399cc;
-                    }
-                }           
-            }
-            &.day1 {
-                 polygon{
-                    &:nth-child(1) {
-                        fill:#66aacc;
-                    }
-                    &:nth-child(2) {
-                        fill:#66b5d6;
-                    }
-                    &:nth-child(3) {
-                        fill:#66bfdf;
-                    }
-                }           
-            }   
-        }
-        text.legend-number {
-            fill:#006699;
-        }
-    }
-}
-.gc-red {
-    .js-calendar-d-svg {
-        g {
-            &.day4 {
-                polygon{
-                    &:nth-child(1) {
-                        fill:#660000;
-                    }
-                    &:nth-child(2) {
-                        fill:#662f20;
-                    }
-                    &:nth-child(3) {
-                        fill:#663f30;
-                    }
-                }
-            }
-            &.day3 {
-                 polygon{
-                    &:nth-child(1) {
-                        fill:#990033;
-                    }
-                    &:nth-child(2) {
-                        fill:#993333;
-                    }
-                    &:nth-child(3) {
-                        fill:#996666;
-                    }
-                }           
-            }
-            &.day2 {
-                 polygon{
-                    &:nth-child(1) {
-                        fill:#cc0033;
-                    }
-                    &:nth-child(2) {
-                        fill:#cc3366;
-                    }
-                    &:nth-child(3) {
-                        fill:#cc6666;
-                    }
-                }           
-            }
-            &.day1 {
-                 polygon{
-                    &:nth-child(1) {
-                        fill:#ff6666;
-                    }
-                    &:nth-child(2) {
-                        fill:#ff7c7c;
-                    }
-                    &:nth-child(3) {
-                        fill:#ff9999;
-                    }
-                }           
-            }   
-        }
-        text.legend-number {
-            fill:#990033;
-        }
-    }
-}
-.js-calendar-d-svg {
-    g{
+.gc-svg {
+    g {
+        cursor: pointer;
         &.legend {
             rect {
                 opacity:0.3;
@@ -261,10 +134,7 @@
             }
         }
         &:hover {
-            polygon {
-                stroke:#4078c0;
-                stroke-width: 1px;
-            }
+            opacity: 0.8;
         }
         &.day4 {
             polygon{
@@ -361,6 +231,19 @@
     }
 }
 
-.gc-wrapper.hidden {
-    display: none;
+.gc-wrapper {
+    height: 400px;
+    position: relative;
+    &.hidden {
+        display: none;
+    }
+    &.wra-bar {
+        z-index: 10;
+    }
+    &.wra-line {
+        height: 200px;
+    }
+    &.wra-pie {
+    }
 }
+

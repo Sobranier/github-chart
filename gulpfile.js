@@ -2,67 +2,45 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var rename = require('gulp-rename');
-var jshint = require('gulp-jshint');
-var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var runSquence = require('run-sequence');
 var clean = require('gulp-clean');
+var webpack = require('webpack');
+var webpackConfig = require('./webpackConfig.js');
 
-/**
- *  jshint 暂时保留
- */
-gulp.task('jshint', function () {
-    gulp.src('./dev/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+gulp.task('webpack', function(callback) {
+    webpack(webpackConfig, function(err, status) {
+        console.log(status.toString())
+        callback();
+    });
 });
 
-
-/**
- *  js compress
- */
-gulp.task('compress', function () {
-    gulp.src('./dev/*.js')
-        .pipe(uglify())
-        .pipe(rename(function(path) {
-            path.basename += '-min';
-        }))
-        .pipe(gulp.dest('build'));
-});
-
-
-/**
- *  sass
- */
 gulp.task('sass', function () {
-    gulp.src('./dev/*.scss')
+    return gulp.src('./src/*.scss')
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(minifyCSS())
         .pipe(rename(function(path) {
             path.basename += '-min';
         }))
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('dest'));
 });
 
 gulp.task('clean', function () {
-    return gulp.src('build', {read: false})
+    return gulp.src('./dest', {read: false})
         .pipe(clean({force: true}));
 });
 
-gulp.task('static', function () {
-    return gulp.src(['./assets/jquery.js', './dev/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
-        .pipe(gulp.dest('build'));
+gulp.task('copy', function () {
+    return gulp.src(['./src/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
+        .pipe(gulp.dest('dest'));
 });
 
-/**
- *  watch task
- */
 gulp.task('watch', function () {
-    watch('./dev/*.scss', function () {
+    watch('./src/*.scss', function () {
         runSquence('sass');
     });
-    watch('./dev/*.js', function () {
-        runSquence('jshint', 'compress');
+    watch('./src/**/*.js', function () {
+        runSquence('webpack');
     });
 })
 
@@ -70,8 +48,8 @@ gulp.task('watch', function () {
 /**
  *  defalut task
  */
-gulp.task('default', function () {
-    runSquence('clean', 'static', 'sass', 'jshint', 'compress');
+gulp.task('default', function (callback) {
+    runSquence('clean', 'copy', 'sass', 'webpack', callback);
 });
 
 
@@ -81,4 +59,3 @@ gulp.task('default', function () {
 gulp.task('dev', function () {
     runSquence('default', 'watch');
 })
-

@@ -1,6 +1,8 @@
 .DS_Store
 node_modules/
 .sass-cache/
-GC.zip
-GC/
-build
+dest/
+dest.zip
+npm-debug.log
+old.bac
+static/
