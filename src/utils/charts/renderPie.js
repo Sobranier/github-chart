@@ -53,7 +53,5 @@ export default (originData, Ntarget) => {
 
     option.series[0].data = data;
 
-    console.log(option);
-
     myChart.setOption(option);
 }
