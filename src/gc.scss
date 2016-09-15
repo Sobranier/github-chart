@@ -247,3 +247,53 @@
     }
 }
 
+.js-calendar-graph {
+    position: relative;
+}
+.gc-notice {
+    position: absolute;
+    height: 40px;
+    &:nth-child(1) {
+        top: 10px;
+    }
+    &:nth-child(2) {
+        top: 60px;
+    }
+    &:nth-child(1), &:nth-child(2) {
+        right: 0;
+        div:nth-child(3) {
+            width: 170px;
+        }
+    }
+
+    &:nth-child(3) {
+        top: 312px; left: 0;
+    }
+    div, h2 {
+        float: left;
+        line-height: 40px;
+    }
+    div:nth-child(1) {
+        width: 100px;
+        text-align: right;
+        color: #767676;
+    }
+    div:nth-child(3) {
+        margin-left: 10px;
+    }
+    h2 {
+        font-size: 24px;
+        width: 48px;
+        text-align: right;
+        color: #44a340;
+    }
+    h3, h4 {
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: normal;
+        text-align: left;
+    }
+    h4 {
+        color: #767676;
+    }
+}

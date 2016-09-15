@@ -15,3 +15,6 @@ If you would like to hack on this, you need to install compass, when you change 
 
 * add try catch
 * 性能优化
+* 刷新问题
+* hover 的效果
+* 展示信息
