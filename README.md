@@ -3,7 +3,7 @@
 This is an extension for Github Users.
 It renders an Bar graph or a Pie graph to show your commits better.
 
-![demo](http://static-file-pdd.oss-cn-hangzhou.aliyuncs.com/image/4-3.png)
+![demo](http://static-file-pdd.oss-cn-hangzhou.aliyuncs.com/image/bobo.png)
 
 ### For Developers
 
