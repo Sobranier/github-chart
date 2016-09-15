@@ -1,7 +1,7 @@
 # Renders an new face for GitHub Contribution Graphs.
 
 This is an extension for Github Users.
-It renders an Bar graph or a Pie graph to show your commits better.
+It renders a Bar graph and a Pie graph to show your commits better.
 
 ![demo](http://static-file-pdd.oss-cn-hangzhou.aliyuncs.com/image/bobo.png)
 
