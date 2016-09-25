@@ -18,7 +18,8 @@
     "webpack": "^1.13.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gulp dev",
+    "online": "gulp"
   },
   "repository": {
     "type": "git",

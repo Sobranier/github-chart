@@ -3,27 +3,25 @@ import tpl from '../tpl/notice.js';
 export default (container, originData) => {
     let fragment = document.createDocumentFragment();
     let Node = document.createElement('div');
-    Node.className = 'gc-notice-container';
-
-    let stack = {
-        length: 0,
-        startDate: '',
-        endDate: ''
-    };
     let tmp = {
         length: 0,
         startDate: '',
         endDate: ''
     };
+    let stack = Object.assign({}, tmp);
+    let lastStack = Object.assign({}, true);
+    let len = originData.length;
 
-    originData.forEach(item => {
+    Node.className = 'gc-notice-container';
+
+    originData.forEach((item, index) => {
         if (item.count !== 0) {
             if (tmp.length === 0) {
                 tmp.startDate = item.date;
             }
             tmp.endDate = item.date;
             tmp.length ++;
-        } else {
+        } else if (index !== len - 1) {
             if (tmp.length !== 0) {
                 if (tmp.length > stack.length) {
                     stack = Object.assign({}, tmp);

@@ -1,19 +1,18 @@
 import getOriginData from './utils/getOriginData';
-import renderNav from './utils/renderNav';
 import renderWrapper from './utils/renderWrapper';
 import renderChart from './utils/renderChart';
 import renderNotice from './utils/renderNotice';
+import addEvent from './utils/addEvent';
 
 class createChart {
 
     constructor(target) {
         this.Ncontainer = target;
         this.originData = [];
-        this.Nnav = {};
         this.Nwrapper = [];
 
-        // this.renderNav();
         this.reRender();
+        this.addEvent();
     }
 
     reRender() {
@@ -21,10 +20,6 @@ class createChart {
         this.renderWrapper();
         this.renderChart();
         this.renderNotice();
-    }
-
-    renderNav() {
-        this.Nnav = renderNav();
     }
 
     renderWrapper() {
@@ -41,6 +36,10 @@ class createChart {
 
     getOriginData() {
         this.originData = getOriginData(Array.from(this.Ncontainer.querySelectorAll('rect.day')));
+    }
+
+    addEvent() {
+       addEvent(document.querySelector('.profile-timeline-year-list'), this::this.reRender);
     }
 }
 

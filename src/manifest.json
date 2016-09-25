@@ -1,6 +1,6 @@
 {
     "name": "GitHub-Chart",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Renders an new face for GitHub Contribution Graphs.",
     "content_scripts": [{
         "css": ["gc-min.css"],
