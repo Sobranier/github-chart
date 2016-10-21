@@ -4,6 +4,8 @@ import renderChart from './utils/renderChart';
 import renderNotice from './utils/renderNotice';
 import addEvent from './utils/addEvent';
 
+const targetSelector = '.js-calendar-graph-svg'
+
 class createChart {
 
     constructor(target) {
@@ -23,7 +25,7 @@ class createChart {
     }
 
     renderWrapper() {
-        this.Nwrapper = renderWrapper(this.Ncontainer);
+        this.Nwrapper = renderWrapper(document.querySelector(targetSelector));
     }
 
     renderChart() {
@@ -35,16 +37,20 @@ class createChart {
     }
 
     getOriginData() {
-        this.originData = getOriginData(Array.from(this.Ncontainer.querySelectorAll('rect.day')));
+        this.originData = getOriginData(Array.from(document.querySelectorAll(`${targetSelector} rect.day`)));
     }
 
     addEvent() {
-       addEvent(document.querySelector('.profile-timeline-year-list'), this::this.reRender);
+        const observer = new MutationObserver(events => {
+            this.reRender()
+        })
+
+        observer.observe(document.querySelector('.js-repo-filter .mt-4'), { childList: true })
     }
 }
 
 
-let target = document.querySelector('.js-calendar-graph-svg');
+let target = document.querySelector(targetSelector);
 
 if (target) {
     new createChart(target);
