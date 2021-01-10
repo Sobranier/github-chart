@@ -23,17 +23,17 @@ gulp.task('sass', function () {
         .pipe(rename(function(path) {
             path.basename += '-min';
         }))
-        .pipe(gulp.dest('dest'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean', function () {
-    return gulp.src('./dest', {read: false})
+    return gulp.src('./dist', {read: false})
         .pipe(clean({force: true}));
 });
 
 gulp.task('copy', function () {
     return gulp.src(['./src/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
-        .pipe(gulp.dest('dest'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function () {

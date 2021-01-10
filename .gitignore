@@ -1,8 +1,8 @@
 .DS_Store
 node_modules/
 .sass-cache/
-dest/
-dest.zip
+dist/
+dist.zip
 npm-debug.log
 old.bac
 static/
