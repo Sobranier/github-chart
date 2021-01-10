@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var connect = require('gulp-connect')
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var rename = require('gulp-rename');
@@ -52,10 +53,17 @@ gulp.task('default', function (callback) {
     runSquence('clean', 'copy', 'sass', 'webpack', callback);
 });
 
+gulp.task('webserver',function() {
+    connect.server({
+       livereload: true,
+       port: 8080
+    })
+})
+
 
 /**
  *  develop task
  */
 gulp.task('dev', function () {
-    runSquence('default', 'watch');
+    runSquence('default', ['webserver', 'watch']);
 })
