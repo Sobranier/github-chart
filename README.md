@@ -15,7 +15,7 @@ Open [chrome gitub-chart](https://chrome.google.com/webstore/detail/github-chart
 
 * npm install
 * gulp dev      // it will listen to your file change under './src'
-* http-server   // open 'localhost:8080' and use 'demo.html'
+* http-server   // open 'localhost:2333' and use 'demo.html'
 
 
 ## TODO:
