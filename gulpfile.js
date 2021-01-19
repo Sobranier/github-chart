@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var connect = require('gulp-connect')
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var rename = require('gulp-rename');
@@ -22,17 +23,17 @@ gulp.task('sass', function () {
         .pipe(rename(function(path) {
             path.basename += '-min';
         }))
-        .pipe(gulp.dest('dest'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean', function () {
-    return gulp.src('./dest', {read: false})
+    return gulp.src('./dist', {read: false})
         .pipe(clean({force: true}));
 });
 
 gulp.task('copy', function () {
     return gulp.src(['./src/manifest.json', './assets/icon-128.png', './assets/icon-48.png'])
-        .pipe(gulp.dest('dest'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function () {
@@ -52,10 +53,17 @@ gulp.task('default', function (callback) {
     runSquence('clean', 'copy', 'sass', 'webpack', callback);
 });
 
+gulp.task('webserver',function() {
+    connect.server({
+       livereload: true,
+       port: 2333
+    })
+})
+
 
 /**
  *  develop task
  */
 gulp.task('dev', function () {
-    runSquence('default', 'watch');
+    runSquence('default', ['webserver', 'watch']);
 })

@@ -1,11 +1,11 @@
 {
     "name": "GitHub-Chart",
-    "version": "2.0.3",
+    "version": "2.1.1",
     "description": "Renders an new face for GitHub Contribution Graphs.",
     "content_scripts": [{
         "css": ["gc-min.css"],
         "js": ["gc.js"],
-        "matches": ["https://github.com/*", "http://localhost:8080/*"]
+        "matches": ["https://github.com/*", "http://localhost:2333/*"]
     }],
     "permissions": [
         "storage"

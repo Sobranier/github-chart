@@ -2,7 +2,6 @@ import getOriginData from './utils/getOriginData';
 import renderWrapper from './utils/renderWrapper';
 import renderChart from './utils/renderChart';
 import renderNotice from './utils/renderNotice';
-import addEvent from './utils/addEvent';
 
 const targetSelector = '.js-calendar-graph-svg'
 
@@ -14,7 +13,6 @@ class createChart {
         this.Nwrapper = [];
 
         this.reRender();
-        this.addEvent();
     }
 
     reRender() {
@@ -38,14 +36,6 @@ class createChart {
 
     getOriginData() {
         this.originData = getOriginData(Array.from(document.querySelectorAll(`${targetSelector} rect.day`)));
-    }
-
-    addEvent() {
-        const observer = new MutationObserver(events => {
-            this.reRender()
-        })
-
-        observer.observe(document.querySelector('.js-repo-filter .mt-4'), { childList: true })
     }
 }
 

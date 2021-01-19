@@ -1,9 +1,7 @@
-var path = require('path');
-
 module.exports = {
     entry: './src/gc.js',
     output: {
-        path: './dest',
+        path: './dist',
         filename: 'gc.js',
         chunkFilename: 'gc.js'
     },
