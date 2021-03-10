@@ -35,7 +35,8 @@ class createChart {
     }
 
     getOriginData() {
-        this.originData = getOriginData(Array.from(document.querySelectorAll(`${targetSelector} rect.day`)));
+        // 选择带有data-date属性的所有rect元素
+        this.originData = getOriginData(Array.from(document.querySelectorAll(`${targetSelector} rect[data-date]`)));
     }
 }
 
